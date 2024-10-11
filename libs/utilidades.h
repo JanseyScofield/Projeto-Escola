@@ -6,14 +6,14 @@ int validarNumerosVerificadores(char cpf[11], int limite);
 int validarCPF(char cpf[11]);
 
 int validarSexo(char sexo){
-    if(sexo  == '\n'){
-        return 0;
+    if(sexo >= 'a' && sexo <= 'z'){
+        sexo -= ' ';
     }
 
     if(sexo != 'F' && sexo != 'M'){
         return 0;
     }
-    
+
     return 1;
 }
 
@@ -25,13 +25,12 @@ int validarNumerosVerificadores(char cpf[11], int posicaoVerificador){
     int restoDiv;
 
     for(iCont = 0, jCont = limite - 1; iCont < limite; iCont++, jCont--){
-        printf("%c", cpf[iCont]);
-        verificador += (cpf[iCont] - 48) * pesosDigitos[jCont];
+        verificador += (cpf[iCont] - '0') * pesosDigitos[jCont];
     }
 
     restoDiv = verificador % 11;
     verificador = restoDiv >= 2? 11 - restoDiv : 0;
-    valorRecebido = (cpf[posicaoVerificador + 8] - 48);
+    valorRecebido = (cpf[posicaoVerificador + 8] - '0');
 
     if(verificador != valorRecebido){
         return 0;
