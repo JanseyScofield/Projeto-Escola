@@ -8,9 +8,15 @@ typedef struct{
     int ano;
 } Data;
 
+Data inserirData(); 
 void mostrarDataFormatada(Data data);
 int validarDia(Data data);
 int validarData(Data data);
+
+Data inserirData() {
+    Data data;
+    scanf("%d %d %d", &data.dia, &data.mes, &data.ano);
+}
 
 void mostrarDataFormatada(Data data){
     printf("%d/%d/%d", data.dia, data.mes, data.ano);
