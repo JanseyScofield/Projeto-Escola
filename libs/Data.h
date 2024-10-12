@@ -16,6 +16,7 @@ int validarData(Data data);
 Data inserirData() {
     Data data;
     scanf("%d %d %d", &data.dia, &data.mes, &data.ano);
+    return data;
 }
 
 void mostrarDataFormatada(Data data){
