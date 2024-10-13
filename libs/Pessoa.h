@@ -122,7 +122,7 @@ void mostrarPessoa(Pessoa pessoa){
     printf("Data de nascimento: ");
     mostrarDataFormatada(pessoa.data);
     printf("\n");
-    printf("CPF: %s", pessoa.cpf);
+    printf("CPF: %s\n", pessoa.cpf);
 }
 
 #endif
