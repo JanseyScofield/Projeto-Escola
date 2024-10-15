@@ -105,11 +105,11 @@ Pessoa cadastrarPessoa(int matricula) {
         }
         else {
             printf("Alguma informacao incorreta. Repita o processo.\n");
-            int ch;
+        }
+        int ch;
             do {
                 ch = fgetc(stdin);
             } while (ch != EOF && ch != '\n');
-        }
     }
     
     return pessoa;
@@ -123,6 +123,20 @@ void mostrarPessoa(Pessoa pessoa){
     mostrarDataFormatada(pessoa.data);
     printf("\n");
     printf("CPF: %s\n", pessoa.cpf);
+}
+
+void ordenandoPessoasPorSexo(Pessoa *pessoas, int quantidade, char sexo)
+{
+    int j;
+    for(j = 1; j < quantidade; j++) {
+        Pessoa key = pessoas[j];
+        int i = j - 1;
+        while(i > -1 && pessoas[i].sexo != sexo) {
+            pessoas[i + 1] = pessoas[i];
+            i = i - 1;
+        }
+        pessoas[i + 1] = key;
+    }
 }
 
 #endif
