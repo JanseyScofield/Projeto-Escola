@@ -7,23 +7,14 @@
 void cadastrarAluno();
 void listarAlunosMatriculados();
 
-typedef struct{
-    Pessoa pessoa;
-    int matriculado;
-    int qtdMaterias;
-}Aluno;
-
-Aluno alunos[TAM_LISTA_ALUNOS];
-int qtdAlunos = 0;
-
-Aluno buscarAlunoPorCPF(char cpf[12]){
+Pessoa buscarAlunoPorCPF(Pessoa *alunos, int qtdAlunos, char cpf[12]){
     int iCont, jCont;
     int qtdDigitosIguais;
 
     for(iCont = 0; iCont < qtdAlunos; iCont++){
         qtdDigitosIguais = 0;
         for(jCont = 0; jCont < 11; jCont++){
-            if(alunos[iCont].pessoa.cpf[jCont] == cpf[jCont]){
+            if(alunos[iCont].cpf[jCont] == cpf[jCont]){
                 qtdDigitosIguais ++;
             }
             else{
@@ -35,40 +26,32 @@ Aluno buscarAlunoPorCPF(char cpf[12]){
         }
     }
 
-    Aluno null;
-    null.pessoa.matricula = 0;
-    null.matriculado = 0;
+    Pessoa null;
+    null.matricula = 0;
+    null.ativa = 0;
     null.qtdMaterias = 0;
     return null;
 }
 
-void cadastrarAluno(){
-    Aluno novoAluno;
-    novoAluno.pessoa = cadastrarPessoa(qtdAlunos + 1);
-    Aluno alunoExiste = buscarAlunoPorCPF(novoAluno.pessoa.cpf);
-    if(alunoExiste.pessoa.matricula > 0){
+void cadastrarAluno(Pessoa *alunos, int *qtdAlunos){
+    Pessoa novoAluno;
+    novoAluno = cadastrarPessoa(*qtdAlunos + 1);
+    Pessoa alunoExiste = buscarAlunoPorCPF(alunos, *qtdAlunos, novoAluno.cpf);
+    if(alunoExiste.matricula > 0){
         printf("Ja existe um aluno com esse CPF cadastrado no sistema.");
     }
     else{
-        novoAluno.matriculado = 1;
+        novoAluno.ativa = 1;
         novoAluno.qtdMaterias = 0;
-        alunos[qtdAlunos] = novoAluno;
-        qtdAlunos++;
+        alunos[*qtdAlunos] = novoAluno;
+        (*qtdAlunos)++;
         printf("Aluno cadastrado com sucesso!\n");
     }
 }
 
-void listarAlunosMatriculados(){
-    int iCont;
+void listarAlunosMatriculados(Pessoa *alunos, int qtdAlunos){
     printf("Todos os alunos matriculados:\n");
-    for(iCont = 0; iCont < qtdAlunos; iCont++){
-        if(alunos[iCont].matriculado){
-            printf("--------------------------------------\n");
-            mostrarPessoa(alunos[iCont].pessoa);
-            printf("Quantidades de disciplinas: %d\n", alunos[iCont].qtdMaterias);
-            printf("--------------------------------------\n");
-        }
-    }
+    mostrarPessoas(alunos, qtdAlunos);
 }
 
 #endif

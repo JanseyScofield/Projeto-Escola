@@ -11,13 +11,15 @@ typedef struct {
     char sexo;
     Data data;
     char cpf[TAM_CPF];
+    int ativa;
+    int qtdMaterias;
 } Pessoa;
 
 int validarSexo(char sexo);
 int validarNumerosVerificadores(char cpf[TAM_CPF], int limite);
 int validarCPF(char cpf[TAM_CPF]);
 Pessoa cadastrarPessoa(int matricula);
-void mostrarPessoa(Pessoa pessoa);
+void mostrarPessoas(Pessoa *pessoas, int qtdPessoas);
 
 int validarSexo(char sexo){
     if(sexo >= 'a' && sexo <= 'z'){
@@ -99,6 +101,7 @@ Pessoa cadastrarPessoa(int matricula) {
         pessoa.data = inserirData();
         printf("Informe o sexo (M/F): ");
         scanf(" %c", &pessoa.sexo);
+        pessoa.qtdMaterias = 0;
         
         if (validarCPF(pessoa.cpf) && validarData(pessoa.data) && validarSexo(pessoa.sexo)){
             validar = 1;
@@ -115,14 +118,21 @@ Pessoa cadastrarPessoa(int matricula) {
     return pessoa;
 }
 
-void mostrarPessoa(Pessoa pessoa){
-    printf("Matricula: %d\n", pessoa.matricula);
-    printf("Nome: %s", pessoa.nome);
-    printf("Sexo: %c\n", pessoa.sexo);
-    printf("Data de nascimento: ");
-    mostrarDataFormatada(pessoa.data);
-    printf("\n");
-    printf("CPF: %s\n", pessoa.cpf);
+void mostrarPessoas(Pessoa *pessoas, int qtdPessoas){
+    int iCont;
+
+    for(iCont = 0; iCont < qtdPessoas; iCont++){
+        printf("--------------------------------------\n");
+        printf("Matricula: %d\n", pessoas[iCont].matricula);
+        printf("Nome: %s", pessoas[iCont].nome);
+        printf("Sexo: %c\n", pessoas[iCont].sexo);
+        printf("Data de nascimento: ");
+        mostrarDataFormatada(pessoas[iCont].data);
+        printf("\n");
+        printf("CPF: %s\n", pessoas[iCont].cpf);
+        printf("Quantidades de disciplinas associadas: %d\n", pessoas[iCont].qtdMaterias);
+        printf("--------------------------------------\n");
+    }
 }
 
 void ordenandoPessoasPorSexo(Pessoa *pessoas, int quantidade, char sexo)
