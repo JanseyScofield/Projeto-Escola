@@ -3,6 +3,7 @@
 #ifndef PESSOA
 #define PESSOA
 #define tam 256
+#define TAM_LISTAS 1000
 #define TAM_CPF 12
 
 typedef struct {
@@ -142,6 +143,20 @@ void ordenandoPessoasPorSexo(Pessoa *pessoas, int quantidade, char sexo)
         Pessoa key = pessoas[j];
         int i = j - 1;
         while(i > -1 && pessoas[i].sexo != sexo) {
+            pessoas[i + 1] = pessoas[i];
+            i = i - 1;
+        }
+        pessoas[i + 1] = key;
+    }
+}
+
+void ordenandoPessoasAtivas(Pessoa *pessoas, int quantidade, char sexo)
+{
+    int j;
+    for(j = 1; j < quantidade; j++) {
+        Pessoa key = pessoas[j];
+        int i = j - 1;
+        while(i > -1 && !pessoas[i].ativa) {
             pessoas[i + 1] = pessoas[i];
             i = i - 1;
         }
