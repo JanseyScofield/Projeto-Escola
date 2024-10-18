@@ -3,36 +3,9 @@
 #include <stdio.h>
 #include "Pessoa.h"
 
-
 void cadastrarAluno();
 void listarAlunosMatriculados();
 void menuAlunos(Pessoa *alunos, int *qtdAlunos);
-
-Pessoa buscarAlunoPorCPF(Pessoa *alunos, int qtdAlunos, char cpf[12]){
-    int iCont, jCont;
-    int qtdDigitosIguais;
-
-    for(iCont = 0; iCont < qtdAlunos; iCont++){
-        qtdDigitosIguais = 0;
-        for(jCont = 0; jCont < 11; jCont++){
-            if(alunos[iCont].cpf[jCont] == cpf[jCont]){
-                qtdDigitosIguais ++;
-            }
-            else{
-                break;
-            }
-        }
-        if(qtdDigitosIguais == 11){
-            return alunos[iCont];
-        }
-    }
-
-    Pessoa null;
-    null.matricula = 0;
-    null.ativa = 0;
-    null.qtdMaterias = 0;
-    return null;
-}
 
 void menuAlunos(Pessoa *alunos, int *qtdAlunos){
     int opcao;
@@ -64,7 +37,7 @@ void menuAlunos(Pessoa *alunos, int *qtdAlunos){
 void cadastrarAluno(Pessoa *alunos, int *qtdAlunos){
     Pessoa novoAluno;
     novoAluno = cadastrarPessoa(*qtdAlunos + 1);
-    Pessoa alunoExiste = buscarAlunoPorCPF(alunos, *qtdAlunos, novoAluno.cpf);
+    Pessoa alunoExiste = buscarPessoaPorCPF(alunos, *qtdAlunos, novoAluno.cpf);
     if(alunoExiste.matricula > 0){
         printf("Ja existe um aluno com esse CPF cadastrado no sistema.");
     }
