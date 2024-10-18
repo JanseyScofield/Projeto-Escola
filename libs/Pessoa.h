@@ -19,6 +19,7 @@ typedef struct {
 int validarSexo(char sexo);
 int validarNumerosVerificadores(char cpf[TAM_CPF], int limite);
 int validarCPF(char cpf[TAM_CPF]);
+Pessoa buscarPessoaPorCPF(Pessoa *pessoas, int qtdPessoas, char cpf[12]);
 Pessoa cadastrarPessoa(int matricula);
 void mostrarPessoas(Pessoa *pessoas, int qtdPessoas);
 
@@ -117,6 +118,32 @@ Pessoa cadastrarPessoa(int matricula) {
     }
     
     return pessoa;
+}
+
+Pessoa buscarPessoaPorCPF(Pessoa *pessoas, int qtdPessoas, char cpf[12]){
+    int iCont, jCont;
+    int qtdDigitosIguais;
+
+    for(iCont = 0; iCont < qtdPessoas; iCont++){
+        qtdDigitosIguais = 0;
+        for(jCont = 0; jCont < 11; jCont++){
+            if(pessoas[iCont].cpf[jCont] == cpf[jCont]){
+                qtdDigitosIguais ++;
+            }
+            else{
+                break;
+            }
+        }
+        if(qtdDigitosIguais == 11){
+            return pessoas[iCont];
+        }
+    }
+
+    Pessoa null;
+    null.matricula = 0;
+    null.ativa = 0;
+    null.qtdMaterias = 0;
+    return null;
 }
 
 void mostrarPessoas(Pessoa *pessoas, int qtdPessoas){
