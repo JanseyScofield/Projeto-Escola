@@ -20,6 +20,7 @@ void ModuloProfessor(Pessoa lstProfessor[], int *qtdProfessores)
     while(!sair)
     {
         int opcao;
+        limparTela();
         menuProfessor();
 
         scanf("%d", &opcao);
@@ -33,12 +34,21 @@ void ModuloProfessor(Pessoa lstProfessor[], int *qtdProfessores)
             }
             case 1: {
                 cadastrarPessoa(lstProfessor, qtdProfessores);
-                printf("\nqtd: %d\n", *qtdProfessores);
                 break;
             }
             case 2: {
                 atualizarPessoa(lstProfessor, qtdProfessores);
                 break;
+            }
+            case 3: {
+                excluirPessoa(lstProfessor, qtdProfessores);
+                break;
+            }
+            case 4: {
+                break;
+            }
+            default: {
+                entradaInvalida();
             }
         }
     }

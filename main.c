@@ -16,8 +16,7 @@ int main(){
 
 
      while(!sair) {
-          system("clear||cls");
-          printf("Projeto Escola\n");
+          limparTela();
           menuInicial();
           
           scanf("%d", &opcao);
@@ -25,29 +24,29 @@ int main(){
 
           switch(opcao) {
                case 0: {
-                    system("clear||cls");
+                    limparTela();
                     sair = 1;
                     break;
                }
                case 2: {
                     int sairProfessor = 0;
-                    system("clear||cls");
+                    limparTela();
                     ModuloProfessor(lstProfessores, &qtdProfessores);
-
                     break;
                }
                default: {
-                    system("clear||cls");
-                    printf("Entrada invalida. Aperte um botao para continuar.\n");
-                    getc(stdin);
+                    limparTela();
+                    printf("Entrada invalida.\n");
+                    esperarEnter();
                }
           }
      }
 }
 
 void menuInicial() {
-    printf("0 - Sair\n");
-    printf("1 - Aluno\n");
-    printf("2 - Professor\n");
-    printf("3 - Disciplina\n");
+     printf("PROJETO ESCOLA\n");
+     printf("0 - Sair\n");
+     printf("1 - Aluno\n");
+     printf("2 - Professor\n");
+     printf("3 - Disciplina\n");
 }
