@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "libs/Pessoa.h"
 #include "libs/utils.h"
-#include "libs/Modulo_Professor.h"
+#include "libs/Modulo_Pessoa.h"
 
 void menuInicial();
 
@@ -28,10 +28,14 @@ int main(){
                     sair = 1;
                     break;
                }
+               case 1: {
+                    char tipo[] = "ALUNO";
+                    ModuloPessoa(lstAlunos, &qtdAlunos, tipo);
+               }
                case 2: {
-                    int sairProfessor = 0;
+                    char tipo[] = "PROFESSOR";
                     limparTela();
-                    ModuloProfessor(lstProfessores, &qtdProfessores);
+                    ModuloPessoa(lstProfessores, &qtdProfessores, tipo);
                     break;
                }
                default: {

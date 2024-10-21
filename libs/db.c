@@ -17,6 +17,7 @@ void cadastrarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
         printf("\n--------------------------------------\n");
         printf("Informe o nome: ");
         fgets(pessoa.nome, tam, stdin);
+        toUpper(pessoa.nome);
         printf("Informe o cpf (somente numeros): ");
         fgets(pessoa.cpf, TAM_CPF, stdin);
         printf("Informe a data de nascimento: ");
