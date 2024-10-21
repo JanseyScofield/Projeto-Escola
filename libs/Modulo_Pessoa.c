@@ -1,20 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
-#include "Modulo_Professor.h"
+#include "Modulo_Pessoa.h"
 #include "db.h"
 
-void menuProfessor() {
-    printf("MODULO PROFESSOR\n");
+void menuPessoa(char tipo[]) {
+    char txt[20];
+    copyStr(tipo, txt);
+    toLower(txt);
+    printf("MODULO %s\n", tipo);
     printf("0 - Voltar\n");
-    printf("1 - Cadastro de Professor\n");
-    printf("2 - Atualizar Professor\n");
-    printf("3 - Excluir Professor\n");
-    printf("4 - Relatorios de Professores\n");
+    printf("1 - Cadastrar %s\n", txt);
+    printf("2 - Atualizar %s\n", txt);
+    printf("3 - Excluir %s\n", txt);
+    printf("4 - Relatorios\n", txt);
 }
 
 
-void ModuloProfessor(Pessoa lstProfessor[], int *qtdProfessores)
+void ModuloPessoa(Pessoa lstPessoa[], int *qtdPessoas, char tipo[])
 {
     int sair = 0;
 
@@ -22,7 +25,7 @@ void ModuloProfessor(Pessoa lstProfessor[], int *qtdProfessores)
     {
         int opcao;
         limparTela();
-        menuProfessor();
+        menuPessoa(tipo);
 
         scanf("%d", &opcao);
         limparBuffer();
@@ -34,15 +37,15 @@ void ModuloProfessor(Pessoa lstProfessor[], int *qtdProfessores)
                 break;
             }
             case 1: {
-                cadastrarPessoa(lstProfessor, qtdProfessores, "PROFESSOR");
+                cadastrarPessoa(lstPessoa, qtdPessoas, tipo);
                 break;
             }
             case 2: {
-                atualizarPessoa(lstProfessor, qtdProfessores, "PROFESSOR");
+                atualizarPessoa(lstPessoa, qtdPessoas, tipo);
                 break;
             }
             case 3: {
-                excluirPessoa(lstProfessor, qtdProfessores, "PROFESSOR");
+                excluirPessoa(lstPessoa, qtdPessoas, tipo);
                 break;
             }
             case 4: {
