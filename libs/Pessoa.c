@@ -92,11 +92,12 @@ void cadastrarPessoa(Pessoa lstPessoa[], int *quantidade)
 
     while (!validar && op != 'n')
     {
+        limparTela();
         op = 'a'; // Essa atribuição existe somente para o caso de existir lixo em tipos CHARS. (Evitar erro no while)
         pessoa.matricula = *quantidade + 1;
         printf("Informe o nome: ");
         fgets(pessoa.nome, tam, stdin);
-        printf("Informe o cpf (somente números): ");
+        printf("Informe o cpf (somente numeros): ");
         fgets(pessoa.cpf, TAM_CPF, stdin);
         printf("Informe a data de nascimento: ");
         pessoa.data = inserirData();
@@ -108,11 +109,14 @@ void cadastrarPessoa(Pessoa lstPessoa[], int *quantidade)
         if (validarCPF(pessoa.cpf) && validarData(pessoa.data) && validarSexo(pessoa.sexo) && cpfCadastrado == -1)
         {
             validar = 1;
+            printf("NOVO PROFESSOR CADASTRADO");
             mostrarPessoa(pessoa);
+            esperarEnter();
         }
         else
         {
             printf("\nAlguma informacao incorreta.\n");
+            mostrarPessoa(pessoa);
             printf("Deseja tentar realizar o cadastro novamente? (s/n)\n");
             while (op != 's' && op != 'n')
             {
@@ -136,7 +140,7 @@ void atualizarPessoa(Pessoa lstPessoa[], int *quantidade)
     int validar = 0;
     char op = 'a';
     char cpf[TAM_CPF];
-
+    limparTela();
     printf("Informe o CPF do cadastrado que deseja alterar: ");
     fgets(cpf, TAM_CPF, stdin);
 
@@ -149,6 +153,7 @@ void atualizarPessoa(Pessoa lstPessoa[], int *quantidade)
 
         while (!validar && op != 'n')
         {
+            limparTela();
             limparBuffer();
             printf("Informe o nome: ");
             fgets(pessoa.nome, tam, stdin);
@@ -179,7 +184,29 @@ void atualizarPessoa(Pessoa lstPessoa[], int *quantidade)
     else
     {
         printf("\nEsse usuario nao foi encontrado.\n");
+        esperarEnter();
     }
+}
+
+void excluirPessoa(Pessoa lstPessoa[], int *quantidade) {
+    
+    char cpf[TAM_CPF];
+    int posicao;
+    limparTela();
+    printf("Informe o CPF do cadastro que deseja desativar: ");
+    fgets(cpf, TAM_CPF, stdin);
+    posicao = intBuscarPessoaPorCPF(lstPessoa, *quantidade, cpf);
+
+    if(posicao >= 0)
+    {
+        lstPessoa[posicao].ativa = 0;
+        printf("Cadastro excluido.");
+    }
+    else {
+        printf("Esse usuario nao esta cadastrado.");
+    }
+    limparBuffer();
+    esperarEnter();
 }
 
 int intBuscarPessoaPorCPF(Pessoa pessoas[], int qtdPessoas, char cpf[12])
@@ -189,7 +216,6 @@ int intBuscarPessoaPorCPF(Pessoa pessoas[], int qtdPessoas, char cpf[12])
     int pos = -1;
     int qtdDigitosIguais;
 
-    printf("QUANTIDADE: %d", qtdPessoas);
     for (iCont = 0; iCont < qtdPessoas && pos == -1; iCont++)
     {
         diferente = 0;
@@ -210,7 +236,7 @@ int intBuscarPessoaPorCPF(Pessoa pessoas[], int qtdPessoas, char cpf[12])
             pos = iCont;
         }
     }
-    printf("\n-----------(%d)(%d)---------\n", pos, qtdDigitosIguais);
+
     return pos;
 }
 
@@ -248,7 +274,7 @@ Pessoa buscarPessoaPorCPF(Pessoa *pessoas, int qtdPessoas, char cpf[12])
 
 void mostrarPessoa(Pessoa pessoa)
 {
-    printf("--------------------------------------\n");
+    printf("\n--------------------------------------\n");
     printf("Matricula: %d\n", pessoa.matricula);
     printf("Nome: %s", pessoa.nome);
     printf("Sexo: %c\n", pessoa.sexo);

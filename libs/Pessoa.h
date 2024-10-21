@@ -22,6 +22,7 @@ int intBuscarPessoaPorCPF(Pessoa pessoas[], int qtdPessoas, char cpf[12]);
 Pessoa buscarPessoaPorCPF(Pessoa *pessoas, int qtdPessoas, char cpf[12]);
 void cadastrarPessoa(Pessoa lstPessoa[], int *quantidade);
 void atualizarPessoa(Pessoa lstPessoa[], int *quantidade);
+void excluirPessoa(Pessoa lstPessoa[], int *quantidade);
 void mostrarPessoa(Pessoa pessoa);
 void mostrarPessoas(Pessoa *pessoas, int qtdPessoas);
 void ordenandoPessoasAtivas(Pessoa *pessoas, int qtdPessoas);
