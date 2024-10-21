@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Data.h"
-#include "utils.h"
+#include "../utils.h"
 #include "Pessoa.h"
 
 int validarSexo(char sexo)
@@ -84,7 +83,7 @@ int validarCPF(char cpf[TAM_CPF])
     return 0;
 }
 
-int intBuscarPessoaPorCPF(Pessoa pessoas[], int qtdPessoas, char cpf[12])
+int buscarPessoaPorCPF(Pessoa pessoas[], int qtdPessoas, char cpf[12])
 {
     int iCont, jCont;
     int existe = 0, diferente;
@@ -115,38 +114,6 @@ int intBuscarPessoaPorCPF(Pessoa pessoas[], int qtdPessoas, char cpf[12])
     return pos;
 }
 
-Pessoa buscarPessoaPorCPF(Pessoa *pessoas, int qtdPessoas, char cpf[12])
-{
-    int iCont, jCont;
-    int qtdDigitosIguais;
-
-    for (iCont = 0; iCont < qtdPessoas; iCont++)
-    {
-        qtdDigitosIguais = 0;
-        for (jCont = 0; jCont < 11; jCont++)
-        {
-            if (pessoas[iCont].cpf[jCont] == cpf[jCont])
-            {
-                qtdDigitosIguais++;
-            }
-            else
-            {
-                break;
-            }
-        }
-        if (qtdDigitosIguais == 11)
-        {
-            return pessoas[iCont];
-        }
-    }
-
-    Pessoa null;
-    null.matricula = 0;
-    null.ativa = 0;
-    null.qtdMaterias = 0;
-    return null;
-}
-
 void mostrarPessoa(Pessoa pessoa)
 {
     printf("\n--------------------------------------\n");
@@ -154,7 +121,7 @@ void mostrarPessoa(Pessoa pessoa)
     printf("Nome: %s", pessoa.nome);
     printf("Sexo: %c\n", pessoa.sexo);
     printf("Data de nascimento: ");
-    mostrarDataFormatada(pessoa.data);
+    //mostrarDataFormatada(pessoa.data);
     printf("\n");
     printf("CPF: %s\n", pessoa.cpf);
     printf("Quantidades de disciplinas associadas: %d", pessoa.qtdMaterias);

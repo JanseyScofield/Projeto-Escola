@@ -3,7 +3,7 @@
 #define tam 256
 #define TAM_LISTAS 3
 #define TAM_CPF 12
-#include "Data.h"
+#include "../Data.h"
 
 typedef struct {
     int matricula; 
@@ -18,8 +18,7 @@ typedef struct {
 int validarSexo(char sexo);
 int validarNumerosVerificadores(char cpf[TAM_CPF], int limite);
 int validarCPF(char cpf[TAM_CPF]);
-int intBuscarPessoaPorCPF(Pessoa pessoas[], int qtdPessoas, char cpf[12]);
-Pessoa buscarPessoaPorCPF(Pessoa *pessoas, int qtdPessoas, char cpf[12]);
+int buscarPessoaPorCPF(Pessoa pessoas[], int qtdPessoas, char cpf[12]);
 void mostrarPessoa(Pessoa pessoa);
 void mostrarPessoas(Pessoa *pessoas, int qtdPessoas);
 void ordenandoPessoasAtivas(Pessoa *pessoas, int qtdPessoas);

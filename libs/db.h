@@ -1,4 +1,4 @@
-#include "Pessoa.h"
+#include "pessoa/Pessoa.h"
 #include "utils.h"
 #ifndef DB
 #define DB
