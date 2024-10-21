@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "utils.h"
 #include "Modulo_Professor.h"
+#include "db.h"
 
 void menuProfessor() {
     printf("MODULO PROFESSOR\n");
@@ -33,15 +34,15 @@ void ModuloProfessor(Pessoa lstProfessor[], int *qtdProfessores)
                 break;
             }
             case 1: {
-                cadastrarPessoa(lstProfessor, qtdProfessores);
+                cadastrarPessoa(lstProfessor, qtdProfessores, "PROFESSOR");
                 break;
             }
             case 2: {
-                atualizarPessoa(lstProfessor, qtdProfessores);
+                atualizarPessoa(lstProfessor, qtdProfessores, "PROFESSOR");
                 break;
             }
             case 3: {
-                excluirPessoa(lstProfessor, qtdProfessores);
+                excluirPessoa(lstProfessor, qtdProfessores, "PROFESSOR");
                 break;
             }
             case 4: {
