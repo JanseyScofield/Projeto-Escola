@@ -105,10 +105,10 @@ int buscarPessoaPorCPF(Pessoa pessoas[], int qtdPessoas, char cpf[12])
                 diferente = 1;
             }
         }
-        if (qtdDigitosIguais == 11)
-        {
-            pos = iCont;
-        }
+    }
+    
+    if (qtdDigitosIguais == 11){
+        pos = iCont - 1;
     }
 
     return pos;
@@ -118,12 +118,14 @@ void mostrarPessoa(Pessoa pessoa)
 {
     printf("\n--------------------------------------\n");
     printf("Matricula: %d\n", pessoa.matricula);
+    printf("Ativo : %d\n", pessoa.ativa);
     printf("Nome: %s", pessoa.nome);
+    printf("\n");
     printf("Sexo: %c\n", pessoa.sexo);
     printf("Data de nascimento: ");
-    //mostrarDataFormatada(pessoa.data);
+    mostrarDataFormatada(pessoa.data);
     printf("\n");
-    printf("CPF: %s\n", pessoa.cpf);
+    printf("CPF: %s", pessoa.cpf);
     printf("Quantidades de disciplinas associadas: %d", pessoa.qtdMaterias);
     printf("\n--------------------------------------\n");
 }
