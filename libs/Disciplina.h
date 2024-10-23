@@ -21,5 +21,6 @@ void cadastrarDisciplina(Disciplina *disciplinas, int *qtdDisciplinas, Pessoa *p
 void mostrarDadosResumidosDisciplina(Disciplina disciplina);
 void mostrarDisciplinas(Disciplina *disciplinas, int qtdDisciplinas);
 int buscarDisciplinaPorCodigo(Disciplina *disciplinas, int qtdDisciplinas, int codigoDisciplina);
+void mostrarDisciplinaDetalhada(Disciplina *disciplinas, int qtdDisciplinas);
 
 #endif

@@ -64,17 +64,6 @@ void mostrarDisciplinas(Disciplina *disciplinas, int qtdDisciplinas){
 	for(iCont = 0; iCont < qtdDisciplinas; iCont++){
 		printf("--------------------------------------\n");
 		mostrarDadosResumidosDisciplina(disciplinas[iCont]);
-		// if(disciplinas[iCont].qtdAlunos >  0){
-		// 	int jCont;
-		// 	printf("Alunos cadastrados: \n");
-		// 	for(jCont = 0; jCont < disciplinas[iCont].qtdAlunos; jCont++){
-		// 		printf(" %d - %s\n", jCont + 1, disciplinas[iCont].alunos[jCont]->nome);			
-		// 	}
-		// }
-		// else{
-		// 	printf("Ainda nao ha alunos cadastrados nessa disciplina");
-		// }
-		//Deixei comentado, pois vou usar essa logica depois em outro lugar.
     	printf("\n--------------------------------------\n");
 	}
 }
@@ -99,4 +88,34 @@ int buscarDisciplinaPorCodigo(Disciplina *disciplinas, int qtdDisciplinas, int c
 	}
 
 	return -1;
+}
+
+void mostrarDisciplinaDetalhada(Disciplina *disciplinas, int qtdDisciplinas){
+	int codigoDisciplina, indexDisciplina;
+
+	do{
+		printf("Digite o codigo da disciplina que deseja visualizar: ");
+		scanf("%d", &codigoDisciplina);
+		indexDisciplina = buscarDisciplinaPorCodigo(disciplinas, qtdDisciplinas, codigoDisciplina);
+		if(indexDisciplina == -1){
+			printf("Disciplina nao encontrada.\n");
+		}
+		else{
+			break;
+		}
+	}while(1);
+	printf("\n--------------------------------------\n");
+	mostrarDadosResumidosDisciplina(disciplinas[indexDisciplina]);
+	printf("\n");
+	if(disciplinas[indexDisciplina].qtdAlunos >  0){
+		int jCont;
+		printf("Alunos cadastrados: \n");
+		for(jCont = 0; jCont < disciplinas[indexDisciplina].qtdAlunos; jCont++){
+			printf(" %d - %s\n", jCont + 1, disciplinas[indexDisciplina].alunos[jCont]->nome);			
+		}
+	}
+	else{
+		printf("Ainda nao ha alunos cadastrados nessa disciplina");
+	}
+	printf("\n--------------------------------------\n");
 }
