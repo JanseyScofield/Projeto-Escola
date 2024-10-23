@@ -1,5 +1,5 @@
-#include "pessoa/Pessoa.h"
-#include "utils.h"
+#include "Pessoa.h"
+#include "../utils.h"
 #ifndef DB
 #define DB
 
