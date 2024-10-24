@@ -78,7 +78,6 @@ void deletarDisciplina(Disciplina *disciplinas, int *qtdDisciplinas){
             case 'S':
                 disciplina->ativa = 0;
                 printf("Disciplina deletada com sucesso!");
-                (*qtdDisciplinas)--;
                 sairOperacao = 1;
                 break;
             case 'N':
@@ -89,4 +88,5 @@ void deletarDisciplina(Disciplina *disciplinas, int *qtdDisciplinas){
                 printf("Opcao invalida. Digite novamente.\n");
         }
     }while(!sairOperacao);
+    ordenarDisciplinaPorStatus(disciplinas, *qtdDisciplinas);
 }

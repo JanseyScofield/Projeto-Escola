@@ -21,5 +21,5 @@ void mostrarDadosResumidosDisciplina(Disciplina disciplina);
 void mostrarDisciplinas(Disciplina *disciplinas, int qtdDisciplinas);
 int buscarDisciplinaPorCodigo(Disciplina *disciplinas, int qtdDisciplinas, int codigoDisciplina);
 void mostrarDisciplinaDetalhada(Disciplina *disciplinas, int qtdDisciplinas);
-
+void ordenarDisciplinaPorStatus(Disciplina *disciplinas, int qtdDisciplinas);
 #endif

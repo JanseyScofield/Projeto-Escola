@@ -2,6 +2,8 @@
 
 void mostrarDadosResumidosDisciplina(Disciplina disciplina){
 	printf("Codigo: %d\n", disciplina.codigo);
+	printf("Status: ");
+	disciplina.ativa ? printf("Ativa\n") : printf("Inativa\n"); 
 	printf("Nome: %s", disciplina.nome);
 	printf("Turma: %d\n", disciplina.turma);
 	printf("Semestre: %d\n", disciplina.semestre);
@@ -13,7 +15,7 @@ void mostrarDisciplinas(Disciplina *disciplinas, int qtdDisciplinas){
 	int iCont;
 	
 	printf("\nDisciplinas cadastradas:\n");
-	for(iCont = 0; iCont < qtdDisciplinas; iCont++){
+	for(iCont = 0; iCont < qtdDisciplinas && disciplinas[iCont].ativa; iCont++){
 		printf("--------------------------------------\n");
 		mostrarDadosResumidosDisciplina(disciplinas[iCont]);
     	printf("\n--------------------------------------\n");
@@ -70,4 +72,19 @@ void mostrarDisciplinaDetalhada(Disciplina *disciplinas, int qtdDisciplinas){
 		printf("Ainda nao ha alunos cadastrados nessa disciplina");
 	}
 	printf("\n--------------------------------------\n");
+}
+
+void ordenarDisciplinaPorStatus(Disciplina *disciplinas, int qtdDisciplinas){
+	int iCont,jCont;
+	Disciplina key;
+
+	for(iCont = qtdDisciplinas - 1; iCont >= 0; iCont--){
+		key = disciplinas[iCont];
+		jCont = iCont - 1;
+		while(jCont >= 0  && key.ativa > disciplinas[jCont].ativa){
+			disciplinas[jCont + 1] = disciplinas[jCont];
+			jCont--;
+		}
+		disciplinas[jCont + 1] = key;
+	}
 }
