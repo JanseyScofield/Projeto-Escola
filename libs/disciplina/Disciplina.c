@@ -22,11 +22,15 @@ void mostrarDisciplinas(Disciplina *disciplinas, int qtdDisciplinas){
 	}
 }
 
-int buscarDisciplinaPorCodigo(Disciplina *disciplinas, int qtdDisciplinas, int codigoDisciplina){
+int buscarDisciplinaPorCodigo(Disciplina *disciplinas, int qtdDisciplinas){
 	int inicio = 0;
 	int fim = qtdDisciplinas - 1;
 	int meio;
- 
+	int codigoDisciplina;
+
+	printf("Digite o codigo da disciplina que deseja deletar: ");
+    scanf("%d", &codigoDisciplina);
+	
 	while(inicio <= fim){
 		meio = inicio + fim / 2;
 
@@ -48,9 +52,7 @@ void mostrarDisciplinaDetalhada(Disciplina *disciplinas, int qtdDisciplinas){
 	int codigoDisciplina, indexDisciplina;
 
 	do{
-		printf("Digite o codigo da disciplina que deseja visualizar: ");
-		scanf("%d", &codigoDisciplina);
-		indexDisciplina = buscarDisciplinaPorCodigo(disciplinas, qtdDisciplinas, codigoDisciplina);
+		indexDisciplina = buscarDisciplinaPorCodigo(disciplinas, qtdDisciplinas);
 		if(indexDisciplina == -1){
 			printf("Disciplina nao encontrada.\n");
 		}
@@ -86,5 +88,13 @@ void ordenarDisciplinaPorStatus(Disciplina *disciplinas, int qtdDisciplinas){
 			jCont--;
 		}
 		disciplinas[jCont + 1] = key;
+	}
+}
+
+void copiarArrayDisciplinasAtivas(Disciplina  *listaDisciplina, int tamanhoArrayOriginal, Disciplina *novoArray){
+	int iCont;
+
+	for(iCont = 0; iCont && listaDisciplina[iCont].ativa; iCont++){
+		novoArray[iCont] = listaDisciplina[iCont];
 	}
 }
