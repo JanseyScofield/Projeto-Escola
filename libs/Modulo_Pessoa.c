@@ -23,13 +23,16 @@ void ModuloPessoa(Pessoa lstPessoa[], int *qtdPessoas, char tipo[])
     int sair = 0;
 
     while(!sair)
-    {
+    {   
+        char entrada;
         int opcao;
+        
         limparTela();
         menuPessoa(tipo);
 
-        scanf("%d", &opcao);
+        scanf(" %c", &entrada);
         limparBuffer();
+        opcao = charToNumber(entrada);
         
         switch(opcao)
         {

@@ -22,12 +22,12 @@ void moduloRelatorioPessoa(Pessoa lstPessoa[], int *qtdPessoa, char tipo[]) {
 
     if(tipo[0] == 'A')
     {
-        char txt[12] = "Alunos";
+        char txt[12] = "ALUNOS";
         copyStr(txt, titulo);
     }
     else 
     {
-        char txt[12] = "Professores";
+        char txt[12] = "PROFESSORES";
         copyStr(txt, titulo);
     }
     
@@ -35,13 +35,18 @@ void moduloRelatorioPessoa(Pessoa lstPessoa[], int *qtdPessoa, char tipo[]) {
 
     while(!sair)
     {
+        char entrada;
         int opcao;
-        limparTela();
-        menuRelatorio(tipo);
 
-        scanf("%d", &opcao);
+        limparTela();
+        menuRelatorio(titulo);
+
+        scanf(" %c", &entrada);
         limparBuffer();
-        
+        opcao = charToNumber(entrada);
+
+        limparTela();
+
         switch(opcao)
         {
             case 0: {
@@ -49,6 +54,12 @@ void moduloRelatorioPessoa(Pessoa lstPessoa[], int *qtdPessoa, char tipo[]) {
                 break;
             }
             case 1: {
+                if(*qtdPessoa > 0)
+                    mostrarPessoas(lstPessoa, *qtdPessoa);
+                else
+                    printf("NAO HA %s CADASTRADOS", titulo);
+
+                esperarEnter();
                 break;
             }
             case 2: {
