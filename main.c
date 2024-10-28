@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "libs/Pessoa.h"
+#include "libs/pessoa/Pessoa.h"
 #include "libs/utils.h"
 #include "libs/Modulo_Pessoa.h"
 
@@ -31,6 +31,7 @@ int main(){
                case 1: {
                     char tipo[] = "ALUNO";
                     ModuloPessoa(lstAlunos, &qtdAlunos, tipo);
+                    break;
                }
                case 2: {
                     char tipo[] = "PROFESSOR";

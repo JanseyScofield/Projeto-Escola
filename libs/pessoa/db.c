@@ -26,9 +26,11 @@ void cadastrarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
         scanf(" %c", &pessoa.sexo);
         printf("\n--------------------------------------\n");
 
+        setbuf(stdin, NULL);
+
         pessoa.qtdMaterias = 0;
-        int cpfCadastrado = intBuscarPessoaPorCPF(lstPessoa, *quantidade, pessoa.cpf);
-        limparBuffer();
+        int cpfCadastrado = buscarPessoaPorCPF(lstPessoa, *quantidade, pessoa.cpf);
+        
         
         if (validarCPF(pessoa.cpf) && validarData(pessoa.data) && validarSexo(pessoa.sexo) && cpfCadastrado == -1)
         {
@@ -77,8 +79,8 @@ void atualizarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
     limparTela();
     printf("Informe o CPF do cadastrado que deseja alterar: ");
     fgets(cpf, TAM_CPF, stdin);
-
-    int posicao = intBuscarPessoaPorCPF(lstPessoa, *quantidade, cpf);
+    int posicao;
+    posicao = buscarPessoaPorCPF(lstPessoa, *quantidade, cpf);
 
     if(posicao < 0)
     {
@@ -135,14 +137,14 @@ void atualizarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
 void excluirPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[]) 
 {
     
-    char cpf[TAM_CPF];
     int posicao;
+    char cpf[TAM_CPF];
     char op;
     limparTela();
     printf("Informe o CPF do cadastro que deseja desativar: ");
     fgets(cpf, TAM_CPF, stdin);
-    posicao = intBuscarPessoaPorCPF(lstPessoa, *quantidade, cpf);
 
+    posicao = buscarPessoaPorCPF(lstPessoa, *quantidade, cpf);
     if(posicao < 0)
     {
         printf("\nEsse usuario nao foi encontrado.\n");
