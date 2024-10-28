@@ -17,7 +17,11 @@ void esperarEnter() {
 }
 
 void limparTela() {
-    system("clear||cls");
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
 }
 
 void entradaInvalida() {
