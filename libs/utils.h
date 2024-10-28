@@ -12,5 +12,7 @@ void tratarStr(char str[]);
 void charToUpper(char *c);
 void charToLower(char *c);
 int charToNumber(char c);
+int verificarLetrasEmUmaStr(char str[], char letras[]);
+int strlen(char str[]);
 
 #endif

@@ -79,18 +79,46 @@ void moduloRelatorioPessoa(Pessoa lstPessoa[], int *qtdPessoa, char tipo[]) {
                         break;
                     }
                     case 5: {
-                        printf("BUSCAR %s", titulo);
+                        int len;
+                        char letras[26];
+                        printf("BUSCAR %s\n", titulo);
+
+                        printf("Informe as letras para busca: ");
+                        fgets(letras, 26, stdin);
+                        printf("\n");
+                        
+                        tratarStr(letras);
+                        toUpper(letras);
+                        len = strlen(letras);
+
+                        if(len >= 3) {
+                            Pessoa encontrados[*qtdPessoa];
+                            buscarPessoasAtravesDeStr(lstPessoa, encontrados, *qtdPessoa, letras);
+                        }
+                        else
+                            printf("Digite ao menos 3 letras para realizar a busca.\n");
+
                         break;
                     }
                     case 6: {
                         if(tipo[0] == 'A')
                         {
+                            int qtd = 0;
+                            
                             printf("LISTANDO %s CADASTRADOS EM MENOS DE 3 DISCIPLINAS", titulo);
+
+                            for(int i = 0; i < *qtdPessoa; i++) {
+                                if(lstPessoa[i].ativa && lstPessoa[i].qtdMaterias < 3) {
+                                    mostrarPessoa(lstPessoa[i]);
+                                    qtd++;
+                                }
+                            }
+
+                            if(qtd == 0)
+                                printf("\nNAO HA ALUNOS CADASTRADOS EM MENOS DE 3 DISCIPLINAS\n");
+                            
                             break;
                         }
-                    }
-                    default: {
-                        entradaInvalida();
                     }
                 }
             }

@@ -78,3 +78,25 @@ int charToNumber(char c) {
 
     return number;
 }
+
+int verificarLetrasEmUmaStr(char str[], char letras[]) {
+    int i = 0;
+    int contem;
+    
+    do {
+        contem = 0;
+        for(int j = 0; str[j] && !contem; j++) {
+            if(str[j] == letras[i])
+                contem = 1;
+        }
+        i += 1;
+    } while(letras[i] && contem);
+
+    return contem;
+}
+
+int strlen(char str[]) {
+    int i;
+    for(i = 0; str[i]; i++);
+    return i;
+}

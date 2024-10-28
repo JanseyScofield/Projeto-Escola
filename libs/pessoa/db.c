@@ -198,3 +198,23 @@ void listarPessoasOrdenadasPorData(Pessoa lstPessoa[], int quantidade) {
     ordenandoPessoasPorData(pessoas, quantidade);
     mostrarPessoas(pessoas, quantidade);
 }
+
+void buscarPessoasAtravesDeStr(Pessoa lstPessoa[], Pessoa encontrados[], int quantidade, char letras[]) {
+    int j = 0;
+    for(int i = 0; i < quantidade; i++) {
+        int buscar;
+        buscar = verificarLetrasEmUmaStr(lstPessoa[i].nome, letras);
+        if (buscar && lstPessoa[i].ativa) {
+            encontrados[j] = lstPessoa[i];
+            j = j + 1;
+        }
+    }
+
+    for(int i = 0; i < j; i++) {
+        mostrarPessoa(encontrados[i]);
+    }
+
+    if(j == 0) {
+        printf("\nNAO FOI POSSIVEL ENCONTRAR ALGUEM COM ESSE NOME\n");
+    }
+}
