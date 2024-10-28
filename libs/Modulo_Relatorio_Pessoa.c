@@ -75,6 +75,7 @@ void moduloRelatorioPessoa(Pessoa lstPessoa[], int *qtdPessoa, char tipo[]) {
                     }
                     case 4: {
                         printf("LISTANDO %s POR DATA", titulo);
+                        listarPessoasOrdenadasPorData(lstPessoa, *qtdPessoa);
                         break;
                     }
                     case 5: {

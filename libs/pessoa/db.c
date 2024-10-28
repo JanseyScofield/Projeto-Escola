@@ -192,4 +192,9 @@ void listarPessoasOrdenadasPorNome(Pessoa lstPessoa[], int quantidade) {
     ordenandoPessoasPorNome(pessoas, quantidade);
     mostrarPessoas(pessoas, quantidade);
 }
-void listarPessoasOrdenadasPorData(Pessoa lstPessoa[], int quantidade, char ordem);
+void listarPessoasOrdenadasPorData(Pessoa lstPessoa[], int quantidade) {
+    Pessoa pessoas[quantidade];
+    copiarArrayDePessoas(lstPessoa, pessoas, quantidade);
+    ordenandoPessoasPorData(pessoas, quantidade);
+    mostrarPessoas(pessoas, quantidade);
+}

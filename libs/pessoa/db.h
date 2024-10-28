@@ -9,6 +9,6 @@ void excluirPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[]);
 
 void listarPessoasOrdenadasPorSexo(Pessoa lstPessoa[], int quantidade, char ordem);
 void listarPessoasOrdenadasPorNome(Pessoa lstPessoa[], int quantidade);
-void listarPessoasOrdenadasPorData(Pessoa lstPessoa[], int quantidade, char ordem);
+void listarPessoasOrdenadasPorData(Pessoa lstPessoa[], int quantidade);
 
 #endif

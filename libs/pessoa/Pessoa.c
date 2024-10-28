@@ -127,14 +127,14 @@ void mostrarPessoa(Pessoa pessoa)
     printf("\n--------------------------------------\n");
 }
 
-void mostrarPessoas(Pessoa pessoas[], int qtdPessoas)
+void mostrarPessoas(Pessoa pessoa[], int qtdPessoas)
 {
     int iCont;
 
     for (iCont = 0; iCont < qtdPessoas; iCont++)
     {
-        if(pessoas[iCont].ativa)
-            mostrarPessoa(pessoas[iCont]);
+        if(pessoa[iCont].ativa)
+            mostrarPessoa(pessoa[iCont]);
     }
 }
 
@@ -176,18 +176,60 @@ void ordenandoPessoasPorNome(Pessoa pessoa[], int quantidade) {
 void ordenandoPessoasAtivas(Pessoa ListaPessoas[], int quantidade)
 {
     int j;
-    Pessoa pessoas[quantidade];
-    copiarArrayDePessoas(ListaPessoas, pessoas, quantidade);
-    for (j = 1; j < quantidade; j++)
-    {
-        Pessoa key = pessoas[j];
+    Pessoa pessoa[quantidade];
+    copiarArrayDePessoas(ListaPessoas, pessoa, quantidade);
+    for (j = 1; j < quantidade; j++) {}
         int i = j - 1;
-        while (i > -1 && !pessoas[i].ativa)
+        Pessoa key = pessoa[j];
+        while (i > -1 && !pessoa[i].ativa)
         {
-            pessoas[i + 1] = pessoas[i];
+            pessoa[i + 1] = pessoa[i];
             i = i - 1;
         }
-        pessoas[i + 1] = key;
+        pessoa[i + 1] = key;
+}
+
+
+void ordenandoPessoasPorData(Pessoa pessoa[], int qtdPessoas) {
+    ordenandoPessoasPorAno(pessoa, qtdPessoas);
+    ordenandoPessoasPorMes(pessoa, qtdPessoas);
+    ordenandoPessoasPorDia(pessoa, qtdPessoas);
+}
+
+void ordenandoPessoasPorAno(Pessoa pessoa[], int qtdPessoas) {
+    for(int j = 0; j < qtdPessoas; j++) {
+        int i = j - 1;
+        Pessoa key = pessoa[j];
+        while(i > -1 && pessoa[i].data.ano > key.data.ano) {
+            pessoa[i + 1] = pessoa[i];
+            i = i - 1;
+        }
+        pessoa[i + 1] = key;
+    }
+}
+void ordenandoPessoasPorMes(Pessoa pessoa[], int qtdPessoas) {
+    for(int j = 0; j < qtdPessoas; j++) {
+        int i = j - 1;
+        Pessoa key = pessoa[j];
+        while(i > -1 && pessoa[i].data.mes > key.data.mes && pessoa[i].data.ano == key.data.ano) {
+            pessoa[i + 1] = pessoa[i];
+            i = i - 1;
+        }
+        pessoa[i + 1] = key;
+    }
+}
+void ordenandoPessoasPorDia(Pessoa pessoa[], int qtdPessoas) {
+    for(int j = 0; j < qtdPessoas; j++) {
+        int i = j - 1;
+        Pessoa key = pessoa[j];
+        while( i > -1 && pessoa[i].data.dia > key.data.dia 
+        && pessoa[i].data.ano == key.data.ano 
+        && pessoa[i].data.mes == key.data.mes) 
+        {
+            pessoa[i + 1] = pessoa[i];
+            i = i - 1;
+        }
+        pessoa[i + 1] = key;
     }
 }
 
