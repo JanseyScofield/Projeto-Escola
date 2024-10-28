@@ -8,4 +8,7 @@ void entradaInvalida();
 void toUpper(char txt[]);
 void toLower(char txt[]);
 void copyStr(char txt1[], char txt2[]);
+void tratarStr(char str[]);
+int charToNumber(char c);
+
 #endif

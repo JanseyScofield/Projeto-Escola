@@ -22,11 +22,12 @@ void limparTela() {
     #else
         system("clear");
     #endif
+    setbuf(stdin, NULL);
 }
 
 void entradaInvalida() {
     limparTela();
-    printf("Entrada inválida.");
+    printf("Entrada invalida.\n");
     esperarEnter();
 }
 
@@ -48,4 +49,22 @@ void copyStr(char txt1[], char txt2[]) {
         txt2[iCont] = txt1[iCont];
     }
     txt2[iCont] = '\0';
+}
+
+void tratarStr(char str[]) {
+    for(int iCont = 0; str[iCont]; iCont++) {
+        if(str[iCont] == '\n')
+            str[iCont] = '\0';
+    }
+}
+
+int charToNumber(char c) {
+    int number;
+
+    if(c >= '0' && c <= '9')
+        number = c - '0';
+    else
+        number = -1;
+
+    return number;
 }

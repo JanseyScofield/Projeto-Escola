@@ -18,6 +18,7 @@ void cadastrarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
         printf("Informe o nome: ");
         fgets(pessoa.nome, tam, stdin);
         toUpper(pessoa.nome);
+        tratarStr(pessoa.nome);
         printf("Informe o cpf (somente numeros): ");
         fgets(pessoa.cpf, TAM_CPF, stdin);
         printf("Informe a data de nascimento: ");
@@ -104,7 +105,9 @@ void atualizarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
         {
             limparTela();
             limparBuffer();
+
             mostrarPessoa(pessoa);
+
             printf("ATUALIZAR %s", tipo);
             printf("Informe o nome: ");
             fgets(pessoa.nome, tam, stdin);
@@ -147,8 +150,7 @@ void excluirPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
     posicao = buscarPessoaPorCPF(lstPessoa, *quantidade, cpf);
     if(posicao < 0)
     {
-        printf("\nEsse usuario nao foi encontrado.\n");
-        esperarEnter();
+        printf("\nEsse usuario nao foi encontrado.");
     }
     else
     {
@@ -168,6 +170,5 @@ void excluirPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
         *quantidade -= 1;
     }
 
-    limparBuffer();
     esperarEnter();
 }
