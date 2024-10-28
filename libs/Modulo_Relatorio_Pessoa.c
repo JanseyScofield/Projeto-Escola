@@ -1,5 +1,7 @@
 #include "Modulo_Relatorio_Pessoa.h"
 #include "utils.h"
+#include "pessoa/db.h"
+
 void menuRelatorio(char tipo[]) {
     char txt[20];
     copyStr(tipo, txt);
@@ -35,10 +37,10 @@ void moduloRelatorioPessoa(Pessoa lstPessoa[], int *qtdPessoa, char tipo[]) {
 
     while(!sair)
     {
+        limparTela();
         char entrada;
         int opcao;
 
-        limparTela();
         menuRelatorio(titulo);
 
         scanf(" %c", &entrada);
@@ -47,47 +49,55 @@ void moduloRelatorioPessoa(Pessoa lstPessoa[], int *qtdPessoa, char tipo[]) {
 
         limparTela();
 
-        switch(opcao)
+        if(opcao == 0)
         {
-            case 0: {
-                sair = 1;
-                break;
-            }
-            case 1: {
-                if(*qtdPessoa > 0)
-                    mostrarPessoas(lstPessoa, *qtdPessoa);
-                else
-                    printf("NAO HA %s CADASTRADOS", titulo);
-
-                esperarEnter();
-                break;
-            }
-            case 2: {
-                break;
-            }
-            case 3: {
-                break;
-            }
-            case 4: {
-                break;
-            }
-            case 5: {
-                break;
-            }
-            case 6: {
-                if(tipo[0] == 'A')
+            sair = 1;
+        }
+        else {
+            if(*qtdPessoa > 0)
+            {
+                switch(opcao)
                 {
-                    limparTela();
-                    printf("ALUNO!!");
-                    esperarEnter();
-                    break;
+                    case 1: {
+                        printf("LISTANDO %s", titulo);
+                        mostrarPessoas(lstPessoa, *qtdPessoa);
+                        break;
+                    }
+                    case 2: {
+                        printf("LISTANDO %s POR SEXO\n", titulo);
+                        listarPessoasOrdenadasPorSexo(lstPessoa, *qtdPessoa, 'F');
+                        break;
+                    }
+                    case 3: {
+                        printf("LISTANDO %s POR NOME", titulo);
+                        listarPessoasOrdenadasPorNome(lstPessoa, *qtdPessoa);
+                        break;
+                    }
+                    case 4: {
+                        printf("LISTANDO %s POR DATA", titulo);
+                        break;
+                    }
+                    case 5: {
+                        printf("BUSCAR %s", titulo);
+                        break;
+                    }
+                    case 6: {
+                        if(tipo[0] == 'A')
+                        {
+                            printf("LISTANDO %s CADASTRADOS EM MENOS DE 3 DISCIPLINAS", titulo);
+                            break;
+                        }
+                    }
+                    default: {
+                        entradaInvalida();
+                    }
                 }
             }
-            default: {
-                entradaInvalida();
+            else
+            {
+                printf("\nNAO HA %s CADASTRADOS\n", titulo);
             }
+            esperarEnter();
         }
     }
-
-
 }

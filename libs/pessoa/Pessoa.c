@@ -5,17 +5,14 @@
 
 int validarSexo(char sexo)
 {
-    if (sexo >= 'a' && sexo <= 'z')
-    {
-        sexo = 'A' + sexo - 'a';
-    }
+    int valido = 1;
 
     if (sexo != 'F' && sexo != 'M')
     {
-        return 0;
+        valido = 0;
     }
 
-    return 1;
+    return valido;
 }
 
 int validarNumerosVerificadores(char cpf[TAM_CPF], int posicaoVerificador)
@@ -136,23 +133,43 @@ void mostrarPessoas(Pessoa pessoas[], int qtdPessoas)
 
     for (iCont = 0; iCont < qtdPessoas; iCont++)
     {
-        mostrarPessoa(pessoas[iCont]);
+        if(pessoas[iCont].ativa)
+            mostrarPessoa(pessoas[iCont]);
     }
 }
 
-void ordenandoPessoasPorSexo(Pessoa *pessoas, int quantidade, char sexo)
+void ordenandoPessoasPorSexo(Pessoa pessoa[], int quantidade, char sexo)
 {
     int j;
     for (j = 1; j < quantidade; j++)
     {
-        Pessoa key = pessoas[j];
+        Pessoa key = pessoa[j];
         int i = j - 1;
-        while (i > -1 && pessoas[i].sexo != sexo)
+        while (i > -1 && pessoa[i].sexo != sexo)
         {
-            pessoas[i + 1] = pessoas[i];
+            pessoa[i + 1] = pessoa[i];
             i = i - 1;
         }
-        pessoas[i + 1] = key;
+        pessoa[i + 1] = key;
+    }
+}
+
+void ordenandoPessoasPorNome(Pessoa pessoa[], int quantidade) {
+    for(int j = 1; j < quantidade; j++) {
+        int atual = 0;
+        int i = j - 1;
+        Pessoa key = pessoa[j];
+        while(i > -1 && pessoa[i].nome[atual] >= key.nome[atual]) {
+            while(pessoa[i].nome[atual] == key.nome[atual]) {
+                atual++;
+            }
+            if(pessoa[i].nome[atual] > key.nome[atual])
+            {
+                pessoa[i+1] = pessoa[i];
+                i = i - 1;
+            }
+        }
+        pessoa[i + 1] = key;
     }
 }
 

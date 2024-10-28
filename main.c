@@ -28,7 +28,6 @@ int main(){
 
           switch(opcao) {
                case 0: {
-                    limparTela();
                     sair = 1;
                     break;
                }
@@ -48,8 +47,10 @@ int main(){
                }
           }
      }
+     
+     limparTela();
 
-     return 0;
+     exit(0);
 }
 
 void menuInicial() {

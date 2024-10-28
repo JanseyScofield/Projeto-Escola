@@ -58,6 +58,16 @@ void tratarStr(char str[]) {
     }
 }
 
+void charToUpper(char *c) {
+    if (*c >= 'a' && *c <= 'z')
+        *c = *c - 'a' + 'A';
+}
+
+void charToLower(char *c) {
+    if (*c >= 'a' && *c <= 'z')
+        *c = *c - 'A' + 'a';
+}
+
 int charToNumber(char c) {
     int number;
 
