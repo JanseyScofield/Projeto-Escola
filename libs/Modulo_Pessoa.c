@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include "utils.h"
 #include "Modulo_Pessoa.h"
-#include "db.h"
+#include "Modulo_Relatorio_Pessoa.h"
+#include "pessoa/db.h"
 
 void menuPessoa(char tipo[]) {
     char txt[20];
@@ -49,6 +50,7 @@ void ModuloPessoa(Pessoa lstPessoa[], int *qtdPessoas, char tipo[])
                 break;
             }
             case 4: {
+                moduloRelatorioPessoa(lstPessoa, qtdPessoas, tipo);
                 break;
             }
             default: {
