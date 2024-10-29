@@ -3,7 +3,7 @@
 #ifndef DB
 #define DB
 
-void cadastrarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[]);
+void cadastrarPessoa(Pessoa lstPessoa[], int *qtdPessoasCadastradas, int *qtdPessoasAtivas, char tipo[]);
 void atualizarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[]);
 void excluirPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[]);
 

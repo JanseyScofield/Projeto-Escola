@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include "db.h"
 
-void cadastrarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
+void cadastrarPessoa(Pessoa lstPessoa[], int *qtdPessoasCadastradas, int *qtdPessoasAtivas, char tipo[])
 {
     int validar = 0;
     char op;
     Pessoa pessoa;
-    pessoa.matricula = *quantidade + 1;
+    pessoa.matricula = *qtdPessoasCadastradas + 1;
     pessoa.ativa = 1;
     pessoa.qtdMaterias = 0;
 
@@ -33,7 +33,7 @@ void cadastrarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
 
         setbuf(stdin, NULL);
 
-        int cpfCadastrado = buscarPessoaPorCPF(lstPessoa, *quantidade, pessoa.cpf);
+        int cpfCadastrado = buscarPessoaPorCPF(lstPessoa, *qtdPessoasAtivas, pessoa.cpf);
         
         
         if (validarCPF(pessoa.cpf) && validarData(pessoa.data) && validarSexo(pessoa.sexo) && cpfCadastrado == -1)
@@ -68,8 +68,10 @@ void cadastrarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
 
     if (op != 'n')
     {
-        lstPessoa[*quantidade] = pessoa;
-        *quantidade += 1;
+        lstPessoa[*qtdPessoasAtivas] = pessoa;
+        *qtdPessoasAtivas += 1;
+        *qtdPessoasCadastradas += 1;
+        ordenandoPessoasAtivas(lstPessoa, *qtdPessoasAtivas);
     }
 
     return;

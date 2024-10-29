@@ -3,6 +3,6 @@
 #define MODULO_PESSOA_H
 
 void menuPessoa(char tipo[]);
-void ModuloPessoa(Pessoa lstPessoa[], int *qtdPessoa, char tipo[]);
+void ModuloPessoa(Pessoa lstPessoa[], int *qtdPessoasCadastradas, int *qtdPessoaAtivas, char tipo[]);
 
 #endif

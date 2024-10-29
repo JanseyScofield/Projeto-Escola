@@ -7,12 +7,18 @@
 void menuInicial();
 
 int main(){
-     int qtdAlunos = 0, qtdProfessores = 0, qtdDisciplinas = 0;
+     int qtdAlunosAtivos = 0, qtdProfessoresAtivos = 0, qtdDisciplinasAtivas = 0;
+     int qtdAlunosCadastrados = 0, qtdProfessoresCadastrados = 0;
      int sair = 0;
 
      Pessoa lstAlunos[TAM_LISTAS];
      Pessoa lstProfessores[TAM_LISTAS];
 
+     for(int i = 0; i < TAM_LISTAS; i++)
+     {
+          lstAlunos[i].ativa = 0;
+          lstProfessores[i].ativa = 0;
+     }
 
      while(!sair) {
           char entrada;
@@ -33,13 +39,13 @@ int main(){
                }
                case 1: {
                     char tipo[] = "ALUNO";
-                    ModuloPessoa(lstAlunos, &qtdAlunos, tipo);
+                    ModuloPessoa(lstAlunos, &qtdAlunosCadastrados, &qtdAlunosAtivos, tipo);
                     break;
                }
                case 2: {
                     char tipo[] = "PROFESSOR";
                     limparTela();
-                    ModuloPessoa(lstProfessores, &qtdProfessores, tipo);
+                    ModuloPessoa(lstProfessores, &qtdProfessoresCadastrados, &qtdProfessoresAtivos, tipo);
                     break;
                }
                default: {

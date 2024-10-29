@@ -18,7 +18,7 @@ void menuPessoa(char tipo[]) {
 }
 
 
-void ModuloPessoa(Pessoa lstPessoa[], int *qtdPessoas, char tipo[])
+void ModuloPessoa(Pessoa lstPessoa[], int *qtdPessoasCadastradas, int *qtdPessoasAtivas, char tipo[])
 {
     int sair = 0;
 
@@ -41,19 +41,19 @@ void ModuloPessoa(Pessoa lstPessoa[], int *qtdPessoas, char tipo[])
                 break;
             }
             case 1: {
-                cadastrarPessoa(lstPessoa, qtdPessoas, tipo);
+                cadastrarPessoa(lstPessoa, qtdPessoasCadastradas, qtdPessoasAtivas, tipo);
                 break;
             }
             case 2: {
-                atualizarPessoa(lstPessoa, qtdPessoas, tipo);
+                atualizarPessoa(lstPessoa, qtdPessoasAtivas, tipo);
                 break;
             }
             case 3: {
-                excluirPessoa(lstPessoa, qtdPessoas, tipo);
+                excluirPessoa(lstPessoa, qtdPessoasAtivas, tipo);
                 break;
             }
             case 4: {
-                moduloRelatorioPessoa(lstPessoa, qtdPessoas, tipo);
+                moduloRelatorioPessoa(lstPessoa, qtdPessoasAtivas, tipo);
                 break;
             }
             default: {
