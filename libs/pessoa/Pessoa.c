@@ -172,12 +172,10 @@ void ordenandoPessoasPorNome(Pessoa pessoa[], int quantidade) {
     }
 }
 
-void ordenandoPessoasAtivas(Pessoa ListaPessoas[], int quantidade)
+void ordenandoPessoasAtivas(Pessoa pessoa[], int quantidade)
 {
     int j;
-    Pessoa pessoa[quantidade];
-    copiarArrayDePessoas(ListaPessoas, pessoa, quantidade);
-    for (j = 1; j < quantidade; j++) {}
+    for (j = 1; j < quantidade; j++) {
         int i = j - 1;
         Pessoa key = pessoa[j];
         while (i > -1 && !pessoa[i].ativa)
@@ -186,6 +184,7 @@ void ordenandoPessoasAtivas(Pessoa ListaPessoas[], int quantidade)
             i = i - 1;
         }
         pessoa[i + 1] = key;
+    }
 }
 
 
