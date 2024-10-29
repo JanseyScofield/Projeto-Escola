@@ -1,7 +1,6 @@
 #ifndef DISCIPLINAS
 #define DISCIPLINAS
 #include <stdio.h>
-#include <stdlib.h>
 #include "../pessoa/Pessoa.h"
 #include "../utils.h"
 #define TAM_LISTA_ALUNOS 60

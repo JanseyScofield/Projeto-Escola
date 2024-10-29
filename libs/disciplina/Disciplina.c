@@ -41,7 +41,7 @@ int buscarDisciplinaPorCodigo(Disciplina *disciplinas, int qtdDisciplinas){
     scanf("%d", &codigoDisciplina);
 	
 	while(inicio <= fim){
-		meio = inicio + fim / 2;
+		meio = (inicio + fim) / 2;
 
 		if(disciplinasAtivas[meio].codigo > codigoDisciplina){
 			fim = meio - 1;
