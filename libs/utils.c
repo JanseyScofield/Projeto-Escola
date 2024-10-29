@@ -95,7 +95,7 @@ int verificarLetrasEmUmaStr(char str[], char letras[]) {
     return contem;
 }
 
-int strlen(char str[]) {
+int strlength(char str[]) {
     int i;
     for(i = 0; str[i]; i++);
     return i;

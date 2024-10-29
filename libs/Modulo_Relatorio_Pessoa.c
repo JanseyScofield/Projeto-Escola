@@ -70,7 +70,7 @@ void moduloRelatorioPessoa(Pessoa lstPessoa[], int *qtdPessoa, char tipo[]) {
                         fgets(op, 3, stdin);
                         tratarStr(op);
 
-                        int num = strToPositiveNumber(op, strlen(op));
+                        int num = strToPositiveNumber(op, strlength(op));
                         if(num >= 0 && num <= 12)
                         {
                             limparTela();
@@ -104,7 +104,7 @@ void moduloRelatorioPessoa(Pessoa lstPessoa[], int *qtdPessoa, char tipo[]) {
                         
                         tratarStr(letras);
                         toUpper(letras);
-                        len = strlen(letras);
+                        len = strlength(letras);
 
                         if(len >= 3) {
                             Pessoa encontrados[*qtdPessoa];
