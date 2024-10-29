@@ -4,6 +4,6 @@
 
 void moduloRelatorioPessoa(Pessoa lstPessoa[], int *qtdPessoa, char tipo[]);
 void menuRelatorio(char tipo[]);
-
+void menuMeses();
 
 #endif

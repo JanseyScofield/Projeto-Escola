@@ -100,3 +100,23 @@ int strlen(char str[]) {
     for(i = 0; str[i]; i++);
     return i;
 }
+
+int strToPositiveNumber(char str[], int len) {
+    int sum = 0;
+    int pot10 = 1;
+
+    if(len > 1)
+        for(int i = 1; i < len; i++)
+            pot10 *= 10;
+
+    for(int i = 0; str[i] && sum != -1; i++) {
+        int number = charToNumber(str[i]);
+        if (number == -1)
+            sum = -1;
+        else
+            sum += number * pot10;
+        pot10 /= 10;
+    }
+
+    return sum;
+}

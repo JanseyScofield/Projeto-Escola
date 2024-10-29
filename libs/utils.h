@@ -14,5 +14,6 @@ void charToLower(char *c);
 int charToNumber(char c);
 int verificarLetrasEmUmaStr(char str[], char letras[]);
 int strlen(char str[]);
+int strToPositiveNumber(char str[], int len);
 
 #endif
