@@ -168,7 +168,7 @@ void menuRelatorio(char tipo[]) {
 void menuMeses() {
     printf("\n1 - Janeiro\n");
     printf("2 - Fevereiro\n");
-    printf("3 - Março\n");
+    printf("3 - Marco\n");
     printf("4 - Abril\n");
     printf("5 - Maio\n");
     printf("6 - Junho\n");

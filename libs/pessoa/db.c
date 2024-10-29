@@ -21,7 +21,7 @@ void cadastrarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
         fgets(pessoa.nome, tam, stdin);
         printf("Informe o cpf (somente numeros): ");
         fgets(pessoa.cpf, TAM_CPF, stdin);
-        printf("Informe a data de nascimento: ");
+        printf("Informe a data de nascimento (DD MM AAAA): ");
         pessoa.data = inserirData();
         printf("Informe o sexo (M/F): ");
         scanf(" %c", &pessoa.sexo);
@@ -215,6 +215,6 @@ void buscarPessoasAtravesDeStr(Pessoa lstPessoa[], Pessoa encontrados[], int qua
     }
 
     if(j == 0) {
-        printf("\nNAO FOI POSSIVEL ENCONTRAR ALGUEM COM ESSE NOME\n");
+        printf("\nNAO FOI POSSIVEL ENCONTRAR ALGUEM COM ESSAS LETRAS\n");
     }
 }

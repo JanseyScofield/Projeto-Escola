@@ -10,7 +10,7 @@ Data inserirData()
 
 void mostrarDataFormatada(Data data)
 {
-    printf("%d/%d/%d", data.dia, data.mes, data.ano);
+    printf("%02d/%02d/%04d", data.dia, data.mes, data.ano);
 }
 
 int validarDia(Data data)

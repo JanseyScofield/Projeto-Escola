@@ -102,10 +102,9 @@ int buscarPessoaPorCPF(Pessoa pessoas[], int qtdPessoas, char cpf[12])
                 diferente = 1;
             }
         }
-    }
-    
-    if (qtdDigitosIguais == 11){
-        pos = iCont - 1;
+        if (qtdDigitosIguais == 11){
+            pos = iCont;
+        }
     }
 
     return pos;
