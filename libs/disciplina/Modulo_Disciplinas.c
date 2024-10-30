@@ -49,11 +49,11 @@ void ModuloDisciplinas(Disciplina disciplinas[], int *qtdDisciplinas, Pessoa pro
                         // em breve
                         break;
                     case 2:
-                        matricularAluno(disciplinas, qtdDisciplinas, alunos, qtdAlunos);
+                        matricularAluno(disciplinas, *qtdDisciplinas, alunos, qtdAlunos);
                         limparBuffer();
                         break;
                     case 3:
-                        excluirAlunoDisciplina(disciplinas, qtdDisciplinas);
+                        excluirAlunoDisciplina(disciplinas, *qtdDisciplinas);
                         limparBuffer();
                         break;
                     default:
@@ -62,7 +62,7 @@ void ModuloDisciplinas(Disciplina disciplinas[], int *qtdDisciplinas, Pessoa pro
                 break;
             }
             case 3: {
-                deletarDisciplina(disciplinas, qtdDisciplinas);
+                deletarDisciplina(disciplinas, *qtdDisciplinas);
                 limparBuffer();
                 break;
             }
