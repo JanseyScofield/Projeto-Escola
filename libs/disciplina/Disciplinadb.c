@@ -81,50 +81,70 @@ void deletarDisciplina(Disciplina *disciplinas, int qtdDisciplinas){
     ordenarDisciplinaPorStatus(disciplinas, qtdDisciplinas);
 }
 
-// void atualizarDisciplina(Disciplina *disciplinas, int qtdDisciplinas){
-// 	int escolha, sair = 0, loopAtivarDisciplina = 1;
-// 	char ativarDisciplina[2];
-// 	int posicaoDisciplina;
-// 	Disciplina *disciplina;
+void atualizarDisciplina(Disciplina *disciplinas, int qtdDisciplinas){
+	int escolha, sair = 0;
+	char ativarDisciplina[2];
+	int posicaoDisciplina;
+	Disciplina *disciplina;
 
-// 	while(!sair){
-// 		posicaoDisciplina = buscarDisciplinaPorCodigo(disciplinas, qtdDisciplinas);
-// 		if(posicaoDisciplina == -1){
-// 			printf("Disciplina nao encontrada. Digite novamente.\n");
-// 		}
-// 		else{
-// 			disciplina = &disciplinas[posicaoDisciplina];
-// 			if(!disciplina->ativa){
-// 				while(loopAtivarDisciplina){
-// 					printf("Essa disciplina nao esta ativa. Deseja ativa-la?('S' para sim e 'N')\n");
-// 					scanf("%c", &ativarDisciplina[0]);
-// 					toUpper(ativarDisciplina);
-// 					switch(ativarDisciplina[0]){
-// 						case 'S':
-// 							disciplina->ativa = 1;
-// 							printf("Disciplina reativada com sucesso!\n");
-// 							loopAtivarDisciplina = 0;
-// 							break;
-// 						case 'N':
-// 							loopAtivarDisciplina = 0;
-// 							break;
-// 						default:
-// 							printf("Opcao invalida. Digite novamente.");
-// 					}
-// 				}
-// 			}
-// 			sair = 1;		
-// 		}
-// 	}
+	while(!sair){
+		posicaoDisciplina = buscarDisciplinaPorCodigo(disciplinas, qtdDisciplinas);
+		if(posicaoDisciplina == -1){
+			printf("Disciplina nao encontrada. Digite novamente.\n");
+		}
+		else{
+			disciplina = &disciplinas[posicaoDisciplina];
+			if(!disciplina->ativa){
+				printf("Disciplina inativa. Digite novamente.\n");
+			}
+			else{
+
+				sair = 1;		
+			}
+		}
+	}
 	
-// 	if(!disciplina->ativa){
-// 		printf("Nao e possivel atualizar disciplinas inativas.");
-// 	}
-// 	else{
-// 		printf("Digite o novo nome da disciplina: ");
-// 		fgets(disciplina->nome, TAM_NOME, stdin);
-// 	}
-// }
+	printf("Informe o  novo nome:\n");
+	fgets(disciplina->nome, TAM_NOME, stdin);
+	printf("Digite a turma:\n");
+	scanf("%d", disciplina->nome.turma);
+	printf("Digite o semestre da disciplina:\n");
+	scanf("%d", &disciplina->nome.semestre);
+	limparBuffer();
+
+	disciplina->professor.qtdDisciplinas--;
+	printf("Digite o CPF do novo professor da matéria: ");
+	fgets(cpf, TAM_CPF, stdin);	
+	while (!validarCPF(cpf)){
+		printf("CPF invalido. Digite novamente: ");
+		fgets(cpf, TAM_CPF, stdin);	
+	}
+	
+	int posProfessor = buscarPessoaPorCPF(professores, qtdProfessores, cpf);
+	while(1){
+		if(posProfessor ==  - 1){
+			printf("Esse professor nao existe. Digite outro CPF\n");
+			fgets(cpf, TAM_CPF, stdin);
+			posProfessor = buscarPessoaPorCPF(professores, qtdProfessores, cpf);
+		}
+		else{
+			Pessoa professor = professores[posProfessor];
+			if(!professor.ativa){
+				printf("Esse professor esta inativo. Digite outro CPF\n");
+				fgets(cpf, TAM_CPF, stdin);
+				posProfessor = buscarPessoaPorCPF(professores, qtdProfessores, cpf);
+			}
+			else{
+				break;
+			}
+		}
+	}
+	professores[posProfessor].qtdMaterias++;
+	Pessoa *ponteiroProf = &professores[posProfessor];
+	novaDisciplina.professor = ponteiroProf;
+	printf("Disciplina atualizada com sucesso!");
+	limparBuffer();
+}
 
 void matricularAluno(Disciplina *disciplinas, int qtdDisciplinas, Pessoa *alunos, int qtdAlunos){
 	int posicaoDisciplina, alunoMatriculado, posAluno;
