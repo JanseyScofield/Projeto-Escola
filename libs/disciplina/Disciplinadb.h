@@ -7,4 +7,5 @@ void cadastrarDisciplina(Disciplina *disciplinas, int *qtdDisciplinas, Pessoa *p
 void deletarDisciplina(Disciplina *disciplinas, int qtdDisciplinas);
 void atualizarDisciplina(Disciplina *disciplinas, int qtdDisciplinas);
 void matricularAluno(Disciplina *disciplinas, int qtdDisciplinas, Pessoa *alunos, int qtdAlunos);
+void excluirAlunoDisciplina(Disciplina *disciplinas, int qtdDisciplinas);
 #endif

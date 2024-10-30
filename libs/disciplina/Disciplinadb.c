@@ -55,16 +55,8 @@ void deletarDisciplina(Disciplina *disciplinas, int qtdDisciplinas){
     char confirmar[1];
     int sairOperacao = 0;
 
-    do{
-        posicaoDisciplina = buscarDisciplinaPorCodigo(disciplinas, qtdDisciplinas);
-        if(posicaoDisciplina ==  -1){
-            printf("Disciplina nao encontrada. Digite outro codigo.\n");
-        }
-        else{
-            break;
-        }
-    }while(1);
-    
+    posicaoDisciplina = encontrarPosicaoDisciplina(disciplinas, qtdDisciplinas);
+
     disciplina = &disciplinas[posicaoDisciplina];
     mostrarDadosResumidosDisciplina(*disciplina);
     limparBuffer();
@@ -90,8 +82,8 @@ void deletarDisciplina(Disciplina *disciplinas, int qtdDisciplinas){
 }
 
 // void atualizarDisciplina(Disciplina *disciplinas, int qtdDisciplinas){
-// 	int escolha, sair = 0;
-// 	char ativarDisciplina[1];
+// 	int escolha, sair = 0, loopAtivarDisciplina = 1;
+// 	char ativarDisciplina[2];
 // 	int posicaoDisciplina;
 // 	Disciplina *disciplina;
 
@@ -102,23 +94,36 @@ void deletarDisciplina(Disciplina *disciplinas, int qtdDisciplinas){
 // 		}
 // 		else{
 // 			disciplina = &disciplinas[posicaoDisciplina];
-// 			if()){
-// 				printf("Essa disciplina nao esta ativa. Deseja ativa-la?('S' para sim e 'N')");
-// 				scanf("%c", &ativarDisciplina[0]);
-// 				toUpper(ativarDisciplina);
-// 				switch(ativarDisciplina[0]){
-// 					case 'S':
-						
+// 			if(!disciplina->ativa){
+// 				while(loopAtivarDisciplina){
+// 					printf("Essa disciplina nao esta ativa. Deseja ativa-la?('S' para sim e 'N')\n");
+// 					scanf("%c", &ativarDisciplina[0]);
+// 					toUpper(ativarDisciplina);
+// 					switch(ativarDisciplina[0]){
+// 						case 'S':
+// 							disciplina->ativa = 1;
+// 							printf("Disciplina reativada com sucesso!\n");
+// 							loopAtivarDisciplina = 0;
+// 							break;
+// 						case 'N':
+// 							loopAtivarDisciplina = 0;
+// 							break;
+// 						default:
+// 							printf("Opcao invalida. Digite novamente.");
+// 					}
 // 				}
-// 			}		
+// 			}
+// 			sair = 1;		
 // 		}
 // 	}
 	
-	
-
-// 	do{
-// 		printf("O que deseja atualizar na disi")
-// 	}while(escolha != 5);
+// 	if(!disciplina->ativa){
+// 		printf("Nao e possivel atualizar disciplinas inativas.");
+// 	}
+// 	else{
+// 		printf("Digite o novo nome da disciplina: ");
+// 		fgets(disciplina->nome, TAM_NOME, stdin);
+// 	}
 // }
 
 void matricularAluno(Disciplina *disciplinas, int qtdDisciplinas, Pessoa *alunos, int qtdAlunos){
@@ -127,16 +132,10 @@ void matricularAluno(Disciplina *disciplinas, int qtdDisciplinas, Pessoa *alunos
 	Disciplina *disciplina;
 	Pessoa *aluno;
 
-	do{
-		posicaoDisciplina = buscarDisciplinaPorCodigo(disciplinas, qtdDisciplinas);
-		if(posicaoDisciplina  == -1){
-			printf("Disciplina nao encontrada. Digite novamente.\n");
-		}
-	}while(posicaoDisciplina == -1);
+	posicaoDisciplina = encontrarPosicaoDisciplina(disciplinas, qtdDisciplinas);
 
 	disciplina = &disciplinas[posicaoDisciplina];
 	limparBuffer();
-	mostrarDadosResumidosDisciplina(*disciplina);
 	
 	do{
 		printf("Digite o CPF do aluno que deseja matricular:\n");
@@ -157,17 +156,46 @@ void matricularAluno(Disciplina *disciplinas, int qtdDisciplinas, Pessoa *alunos
 			if(posAluno == -1){
 				printf("Aluno nao encontrado. Digite novamente.\n");
 			}
+			else{
+				aluno = &alunos[posAluno];
+				if(!aluno->ativa){
+					printf("Aluno inativo. Digite outro cpf.");
+					posAluno = -1;
+				}
+			}
 		}
 
 	}while(posAluno == -1);
 
-	aluno = &alunos[posAluno];
 
-	printf("%d", aluno->qtdMaterias);
 	aluno->qtdMaterias++;
 	disciplina->alunos[disciplina->qtdAlunos] = aluno;
 	disciplina->qtdAlunos++;
-	printf("%d", aluno->qtdMaterias);
 
 	printf("Aluno matriculado na disciplina com sucesso!");
+}
+
+void excluirAlunoDisciplina(Disciplina *disciplinas, int qtdDisciplinas){
+	int posDisciplina, posAluno;
+	char cpfAluno[TAM_CPF];
+	Disciplina *disciplina;
+
+	posDisciplina = encontrarPosicaoDisciplina(disciplinas, qtdDisciplinas);
+	disciplina = &disciplinas[posDisciplina];
+	limparBuffer();
+	
+	do{
+		printf("Digite o cpf do aluno que deseja excluir: ");
+		fgets(cpfAluno, TAM_CPF, stdin);
+		limparBuffer();
+		posAluno = buscarPessoaPorCPF(*disciplina->alunos, disciplina->qtdAlunos, cpfAluno);
+		if(posAluno == -1){
+			printf("Esse aluno nao esta cadastrado nessa disciplina. Digite outro cpf.");
+		}
+	}while(posAluno == -1);
+	
+	disciplina->alunos[posAluno] = NULL;
+	printf("Aluno excluido da disciplina com sucesso!");
+	ordenarListaAlunosPorMatriculados(disciplina->alunos, disciplina->qtdAlunos);
+	disciplina->qtdAlunos--;
 }
