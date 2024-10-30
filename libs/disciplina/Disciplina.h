@@ -24,4 +24,5 @@ void mostrarDisciplinaDetalhada(Disciplina *disciplinas, int qtdDisciplinas);
 void ordenarDisciplinaPorStatus(Disciplina *disciplinas, int qtdDisciplinas);
 void copiarArrayDisciplinas(Disciplina  *listaDisciplina, int tamanhoArrayNovo, Disciplina *novoArray);
 int encontrarPosicaoDisciplina(Disciplina *disciplinas, int qtdDisciplinas);
+void ordenarListaAlunosPorMatriculados(Pessoa **alunos, int qtdAlunos);
 #endif

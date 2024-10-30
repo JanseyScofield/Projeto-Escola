@@ -124,3 +124,18 @@ int encontrarPosicaoDisciplina(Disciplina *disciplinas, int qtdDisciplinas){
 
 	return posicaoDisciplina;
 }
+
+void ordenarListaAlunosPorMatriculados(Pessoa **alunos, int qtdAlunos){
+	Pessoa *key;
+	int iCont, jCont;
+
+	for(iCont = 1; iCont < qtdAlunos; iCont++){
+		key = alunos[iCont];
+		jCont = iCont - 1;
+		while(alunos[jCont] == NULL){
+			alunos[jCont + 1] = alunos[jCont];
+			jCont--;
+		}
+		alunos[jCont + 1] = key;
+	}
+}
