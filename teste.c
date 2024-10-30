@@ -6,6 +6,10 @@
 #include "libs/disciplina/Disciplina.h"
 #include "libs/disciplina/Disciplinadb.h"
 
+#ifndef TAM_LISTAS
+#define TAM_LISTAS 10
+#endif
+
 int main(){     
     Pessoa lstAlunos[TAM_LISTAS];
     int qtdAlunos = 2;
