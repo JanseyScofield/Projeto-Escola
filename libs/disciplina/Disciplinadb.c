@@ -49,14 +49,14 @@ void cadastrarDisciplina(Disciplina *disciplinas, int *qtdDisciplinas, Pessoa *p
 	printf("Disciplina cadastrada com sucesso!");
 }
 
-void deletarDisciplina(Disciplina *disciplinas, int *qtdDisciplinas){
+void deletarDisciplina(Disciplina *disciplinas, int qtdDisciplinas){
     int codigoDisciplina, posicaoDisciplina;
     Disciplina *disciplina;
     char confirmar[1];
     int sairOperacao = 0;
 
     do{
-        posicaoDisciplina = buscarDisciplinaPorCodigo(disciplinas, *qtdDisciplinas);
+        posicaoDisciplina = buscarDisciplinaPorCodigo(disciplinas, qtdDisciplinas);
         if(posicaoDisciplina ==  -1){
             printf("Disciplina nao encontrada. Digite outro codigo.\n");
         }
@@ -86,7 +86,7 @@ void deletarDisciplina(Disciplina *disciplinas, int *qtdDisciplinas){
                 printf("Opcao invalida. Digite novamente.\n");
         }
     }while(!sairOperacao);
-    ordenarDisciplinaPorStatus(disciplinas, *qtdDisciplinas);
+    ordenarDisciplinaPorStatus(disciplinas, qtdDisciplinas);
 }
 
 // void atualizarDisciplina(Disciplina *disciplinas, int qtdDisciplinas){
