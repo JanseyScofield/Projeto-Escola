@@ -81,12 +81,13 @@ void deletarDisciplina(Disciplina *disciplinas, int qtdDisciplinas){
     ordenarDisciplinaPorStatus(disciplinas, qtdDisciplinas);
 }
 
-void atualizarDisciplina(Disciplina *disciplinas, int qtdDisciplinas){
+void atualizarDisciplina(Disciplina *disciplinas, int qtdDisciplinas, Pessoa *professores, int qtdProfessores){
 	int escolha, sair = 0;
 	char ativarDisciplina[2];
 	int posicaoDisciplina;
 	Disciplina *disciplina;
-
+	char cpf[TAM_CPF];
+	
 	while(!sair){
 		posicaoDisciplina = buscarDisciplinaPorCodigo(disciplinas, qtdDisciplinas);
 		if(posicaoDisciplina == -1){
@@ -107,12 +108,12 @@ void atualizarDisciplina(Disciplina *disciplinas, int qtdDisciplinas){
 	printf("Informe o  novo nome:\n");
 	fgets(disciplina->nome, TAM_NOME, stdin);
 	printf("Digite a turma:\n");
-	scanf("%d", disciplina->nome.turma);
+	scanf("%d", disciplina->turma);
 	printf("Digite o semestre da disciplina:\n");
-	scanf("%d", &disciplina->nome.semestre);
+	scanf("%d", &disciplina->semestre);
 	limparBuffer();
 
-	disciplina->professor.qtdDisciplinas--;
+	disciplina->professor->qtdMaterias--;
 	printf("Digite o CPF do novo professor da matéria: ");
 	fgets(cpf, TAM_CPF, stdin);	
 	while (!validarCPF(cpf)){
@@ -141,7 +142,7 @@ void atualizarDisciplina(Disciplina *disciplinas, int qtdDisciplinas){
 	}
 	professores[posProfessor].qtdMaterias++;
 	Pessoa *ponteiroProf = &professores[posProfessor];
-	novaDisciplina.professor = ponteiroProf;
+	disciplina->professor = ponteiroProf;
 	printf("Disciplina atualizada com sucesso!");
 	limparBuffer();
 }
