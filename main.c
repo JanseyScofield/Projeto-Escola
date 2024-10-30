@@ -1,8 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "libs/disciplina/disciplina.h"
+#include "libs/disciplina/Modulo_Disciplina.h"
 #include "libs/pessoa/Pessoa.h"
 #include "libs/utils.h"
 #include "libs/Modulo_Pessoa.h"
+
+#define TAM_LISTAS 10
 
 void menuInicial();
 
@@ -13,6 +17,7 @@ int main(){
 
      Pessoa lstAlunos[TAM_LISTAS];
      Pessoa lstProfessores[TAM_LISTAS];
+     Disciplina lstDisciplinas[TAM_LISTAS]
 
      for(int i = 0; i < TAM_LISTAS; i++)
      {
@@ -44,8 +49,11 @@ int main(){
                }
                case 2: {
                     char tipo[] = "PROFESSOR";
-                    limparTela();
                     ModuloPessoa(lstProfessores, &qtdProfessoresCadastrados, &qtdProfessoresAtivos, tipo);
+                    break;
+               }
+               case 3: {
+                    ModuloDisciplinas(lstDisciplinas, &qtdDisciplinasAtivas, lstProfessores, qtdProfessoresAtivos, lstAlunos, qtdAlunosAtivos);
                     break;
                }
                default: {
