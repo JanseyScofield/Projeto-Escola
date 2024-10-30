@@ -79,7 +79,9 @@ void mostrarDisciplinaDetalhada(Disciplina *disciplinas, int qtdDisciplinas){
 		int jCont;
 		printf("Alunos cadastrados: \n");
 		for(jCont = 0; jCont < disciplinas[indexDisciplina].qtdAlunos; jCont++){
-			printf(" %d - %s\n", jCont + 1, disciplinas[indexDisciplina].alunos[jCont]->nome);			
+			if(disciplinas[indexDisciplina].alunos[jCont].ativa){
+				printf("- %s\n", disciplinas[indexDisciplina].alunos[jCont]->nome);			
+			}
 		}
 	}
 	else{
