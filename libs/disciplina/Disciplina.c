@@ -111,3 +111,16 @@ void copiarArrayDisciplinas(Disciplina  *listaDisciplina, int tamanhoArrayNovo, 
 	}
 	
 }
+
+int encontrarPosicaoDisciplina(Disciplina *disciplinas, int qtdDisciplinas){
+	int posicaoDisciplina;
+
+	do{
+		posicaoDisciplina = buscarDisciplinaPorCodigo(disciplinas, qtdDisciplinas);
+		if(posicaoDisciplina  == -1){
+			printf("Disciplina nao encontrada. Digite novamente.\n");
+		}
+	}while(posicaoDisciplina == -1);
+
+	return posicaoDisciplina;
+}
