@@ -46,7 +46,7 @@ void ModuloDisciplinas(Disciplina disciplinas[], int *qtdDisciplinas, Pessoa pro
                     case 0:
                         break;
                     case 1:
-                        // em breve
+                        atualizarDisciplina(disciplinas, *qtdDisciplinas, professores, qtdProfessores);
                         break;
                     case 2:
                         matricularAluno(disciplinas, *qtdDisciplinas, alunos, qtdAlunos);
