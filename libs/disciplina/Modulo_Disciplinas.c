@@ -3,7 +3,7 @@
 void menuDisciplinas(){
     printf("MODULO DISCIPLINAS\n");
     printf("0 - Voltar\n");
-    printf("1 - Cadastrar Disciplina");
+    printf("1 - Cadastrar Disciplina\n");
     printf("2 - Atualizar Disciplina\n");
     printf("3 - Excluir Disciplina\n");
     printf("4 - Relatorios Disciplina\n");
@@ -20,7 +20,8 @@ void ModuloDisciplinas(Disciplina disciplinas[], int *qtdDisciplinas, Pessoa pro
         menuDisciplinas();
         scanf(" %c", &entrada);
         limparBuffer();
-        opcao = charToNumber(entrada);   
+        opcao = charToNumber(entrada);
+
         switch(opcao)
         {
             case 0: {
@@ -28,16 +29,78 @@ void ModuloDisciplinas(Disciplina disciplinas[], int *qtdDisciplinas, Pessoa pro
                 break;
             }
             case 1: {
-                cadastrarDisciplina(disciplinas, qtdDisciplinas, professores,  qtdProfessores);
-                limparBuffer();
+                limparTela();
+                if(qtdProfessores == 0){
+                    printf("Nao pode cadastrar disciplina sem professor cadastrado.\n");
+                }
+                else{
+                    cadastrarDisciplina(disciplinas, qtdDisciplinas, professores,  qtdProfessores);
+                    limparBuffer();
+                }
+                esperarEnter();
                 break;
             }
             case 2: {
-                printf("O que deseja atualizar?\n");
+                if(*qtdDisciplinas == 0){
+                    printf("Ainda nao ha disciplinas cadastradas.\n");
+                }
+                else{
+                    printf("O que deseja atualizar?\n");
+                    printf("0 - Voltar\n");
+                    printf("1 - Dados da Disciplina\n");
+                    printf("2 - Matricular um aluno\n");
+                    printf("3 - Excluir um aluno\n");
+
+                    scanf(" %c", &entradaAtualizar);
+                    limparBuffer();
+                    opcaoAtualizar = charToNumber(entradaAtualizar);
+                    switch(opcaoAtualizar){
+                        case 0:
+                            break;
+                        case 1:
+                            atualizarDisciplina(disciplinas, *qtdDisciplinas, professores, qtdProfessores);
+                            break;
+                        case 2:
+                            if(qtdAlunos = 0){
+                                printf("Ainda nao ha alunos cadastradas.\n");
+                            }
+                            else{
+                                matricularAluno(disciplinas, *qtdDisciplinas, alunos, qtdAlunos);
+                                limparBuffer();
+                            }
+                            break;
+                        case 3:
+                            if(qtdAlunos = 0){
+                                printf("Ainda nao ha alunos cadastradas.\n");
+                            }
+                            else{
+                                excluirAlunoDisciplina(disciplinas, *qtdDisciplinas);
+                                limparBuffer();
+                            }
+                }
+                esperarEnter();
+                break;
+                }
+            }
+            case 3: {
+                if(*qtdDisciplinas == 0){
+                    printf("Ainda nao ha disciplinas cadastradas.\n");
+                }
+                else if(qtdAlunos = 0){
+                    printf("Ainda nao ha alunos cadastradas.\n");
+                }
+                else{
+                    deletarDisciplina(disciplinas, *qtdDisciplinas);
+                    limparBuffer();
+                }
+                esperarEnter();
+                break;
+            }
+            case 4: {
+                printf("O que deseja visualizar?\n");
                 printf("0 - Voltar\n");
-                printf("1 - Dados da Disciplina");
-                printf("2 - Matricular um aluno\n");
-                printf("3 - Excluir um aluno\n");
+                printf("1 - Listar todas as disciplinas\n");
+                printf("2 - Listar uma disciplina\n");
 
                 scanf(" %c", &entradaAtualizar);
                 limparBuffer();
@@ -46,28 +109,35 @@ void ModuloDisciplinas(Disciplina disciplinas[], int *qtdDisciplinas, Pessoa pro
                     case 0:
                         break;
                     case 1:
-                        atualizarDisciplina(disciplinas, *qtdDisciplinas, professores, qtdProfessores);
-                        break;
-                    case 2:
-                        matricularAluno(disciplinas, *qtdDisciplinas, alunos, qtdAlunos);
+                        if(*qtdDisciplinas == 0){
+                            printf("Ainda nao ha disciplinas cadastradas");
+                        }
+                        else if(qtdAlunos == 0){
+                            printf("Ainda nao ha aluno cadastrados"); 
+                        }
+                        else{
+                            mostrarDisciplinas(disciplinas, *qtdDisciplinas);
+                        }
+                        esperarEnter();
                         limparBuffer();
                         break;
-                    case 3:
-                        excluirAlunoDisciplina(disciplinas, *qtdDisciplinas);
+                    case 2:
+                        if(*qtdDisciplinas == 0){
+                            printf("Ainda nao ha disciplinas cadastradas"); 
+                        }
+                        else if(qtdAlunos == 0){
+                            printf("Ainda nao ha aluno cadastrados"); 
+                        }
+                        else{
+                            mostrarDisciplinaDetalhada(disciplinas, *qtdDisciplinas);
+                        }
+                        esperarEnter();
                         limparBuffer();
                         break;
                     default:
                         entradaInvalida();
-                }   
-                break;
-            }
-            case 3: {
-                deletarDisciplina(disciplinas, *qtdDisciplinas);
-                limparBuffer();
-                break;
-            }
-            case 4: {
-                // em breve
+                        break;
+                }              
                 break;
             }
             default: {
