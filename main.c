@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "libs/disciplina/disciplina.h"
-#include "libs/disciplina/Modulo_Disciplina.h"
+#include "libs/disciplina/Disciplina.h"
+#include "libs/disciplina/Modulo_Disciplinas.h"
 #include "libs/pessoa/Pessoa.h"
 #include "libs/utils.h"
 #include "libs/Modulo_Pessoa.h"
@@ -17,7 +17,7 @@ int main(){
 
      Pessoa lstAlunos[TAM_LISTAS];
      Pessoa lstProfessores[TAM_LISTAS];
-     Disciplina lstDisciplinas[TAM_LISTAS]
+     Disciplina lstDisciplinas[TAM_LISTAS];
 
      for(int i = 0; i < TAM_LISTAS; i++)
      {

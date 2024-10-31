@@ -58,11 +58,20 @@ void ModuloDisciplinas(Disciplina disciplinas[], int *qtdDisciplinas, Pessoa pro
                         case 0:
                             break;
                         case 1:
-                            atualizarDisciplina(disciplinas, *qtdDisciplinas, professores, qtdProfessores);
+                            if(*qtdDisciplinas == 0){
+                               printf("Ainda nao ha disciplinas cadastradas.\n");
+                            }
+                            else{
+                                atualizarDisciplina(disciplinas, *qtdDisciplinas, professores, qtdProfessores);
+                                limparBuffer();
+                            }
                             break;
                         case 2:
                             if(qtdAlunos = 0){
                                 printf("Ainda nao ha alunos cadastradas.\n");
+                            }
+                            else if(*qtdDisciplinas == 0){
+                                printf("Ainda nao ha disciplinas cadastradas.\n");
                             }
                             else{
                                 matricularAluno(disciplinas, *qtdDisciplinas, alunos, qtdAlunos);
@@ -86,9 +95,6 @@ void ModuloDisciplinas(Disciplina disciplinas[], int *qtdDisciplinas, Pessoa pro
                 if(*qtdDisciplinas == 0){
                     printf("Ainda nao ha disciplinas cadastradas.\n");
                 }
-                else if(qtdAlunos = 0){
-                    printf("Ainda nao ha alunos cadastradas.\n");
-                }
                 else{
                     deletarDisciplina(disciplinas, *qtdDisciplinas);
                     limparBuffer();
@@ -111,9 +117,6 @@ void ModuloDisciplinas(Disciplina disciplinas[], int *qtdDisciplinas, Pessoa pro
                     case 1:
                         if(*qtdDisciplinas == 0){
                             printf("Ainda nao ha disciplinas cadastradas");
-                        }
-                        else if(qtdAlunos == 0){
-                            printf("Ainda nao ha aluno cadastrados"); 
                         }
                         else{
                             mostrarDisciplinas(disciplinas, *qtdDisciplinas);
