@@ -14,7 +14,7 @@ void menuPessoa(char tipo[]) {
     printf("1 - Cadastrar %s\n", txt);
     printf("2 - Atualizar %s\n", txt);
     printf("3 - Excluir %s\n", txt);
-    printf("4 - Relatorios\n", txt);
+    printf("4 - Relatorios %s\n", txt);
 }
 
 

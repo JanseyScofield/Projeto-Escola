@@ -41,6 +41,7 @@ void ModuloDisciplinas(Disciplina disciplinas[], int *qtdDisciplinas, Pessoa pro
                 break;
             }
             case 2: {
+                limparTela();
                 if(*qtdDisciplinas == 0){
                     printf("Ainda nao ha disciplinas cadastradas.\n");
                 }
@@ -67,7 +68,7 @@ void ModuloDisciplinas(Disciplina disciplinas[], int *qtdDisciplinas, Pessoa pro
                             }
                             break;
                         case 2:
-                            if(qtdAlunos = 0){
+                            if(qtdAlunos == 0){
                                 printf("Ainda nao ha alunos cadastradas.\n");
                             }
                             else if(*qtdDisciplinas == 0){
@@ -92,6 +93,7 @@ void ModuloDisciplinas(Disciplina disciplinas[], int *qtdDisciplinas, Pessoa pro
                 }
             }
             case 3: {
+                limparTela();
                 if(*qtdDisciplinas == 0){
                     printf("Ainda nao ha disciplinas cadastradas.\n");
                 }
