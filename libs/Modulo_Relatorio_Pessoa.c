@@ -69,8 +69,10 @@ void moduloRelatorioPessoa(Pessoa lstPessoa[], int *qtdPessoa, char tipo[]) {
                         menuMeses();
                         fgets(op, 3, stdin);
                         tratarStr(op);
-
-                        int num = strToPositiveNumber(op, strlength(op));
+                        int len = strlength(op);
+                        int num = strToPositiveNumber(op, len);
+                        if(len > 1)
+                            limparBuffer();
                         if(num >= 0 && num <= 12)
                         {
                             limparTela();
@@ -90,7 +92,6 @@ void moduloRelatorioPessoa(Pessoa lstPessoa[], int *qtdPessoa, char tipo[]) {
                         {
                             printf("Entrada invalida.\n");
                         }
-
                         break;
                     }
                     case 6: {
@@ -144,6 +145,7 @@ void moduloRelatorioPessoa(Pessoa lstPessoa[], int *qtdPessoa, char tipo[]) {
             {
                 printf("\nNAO HA %s CADASTRADOS\n", titulo);
             }
+            setbuf(stdin, NULL);
             esperarEnter();
         }
     }

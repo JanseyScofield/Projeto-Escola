@@ -48,7 +48,7 @@ void cadastrarPessoa(Pessoa lstPessoa[], int *qtdPessoasCadastradas, int *qtdPes
         {
             if(cpfCadastrado != -1) 
             {
-                printf("\nJá existe um cadastro com esse CPF.\n");
+                printf("\nJa existe um cadastro com esse CPF.\n");
             }
             else 
             {
@@ -88,6 +88,8 @@ void atualizarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
     int posicao;
     posicao = buscarPessoaPorCPF(lstPessoa, *quantidade, cpf);
 
+    setbuf(stdin, NULL);
+
     if(posicao < 0)
     {
         printf("\nEsse usuario nao foi encontrado.\n");
@@ -109,22 +111,28 @@ void atualizarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
         while (!validar && op != 'n')
         {
             limparTela();
-            limparBuffer();
 
             mostrarPessoa(pessoa);
 
-            printf("ATUALIZAR %s", tipo);
+            printf("\nATUALIZAR %s\n", tipo);
             printf("Informe o nome: ");
             fgets(pessoa.nome, tam, stdin);
+            toUpper(pessoa.nome);
+            tratarStr(pessoa.nome);
             printf("Informe a data de nascimento: ");
             pessoa.data = inserirData();
             printf("Informe o sexo (M/F): ");
             scanf(" %c", &pessoa.sexo);
+            charToUpper(&pessoa.sexo);
             pessoa.qtdMaterias = 0;
 
             if (validarData(pessoa.data) && validarSexo(pessoa.sexo))
             {
                 validar = 1;
+                limparTela();
+                lstPessoa[posicao] = pessoa;
+                mostrarPessoa(pessoa);
+                esperarEnter();
             }
             else
             {
@@ -134,11 +142,7 @@ void atualizarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
                 while (op != 's' && op != 'n')
                     op = getchar();
             }
-            limparBuffer();
         }
-
-        if (op != 'n')
-            lstPessoa[*quantidade] = pessoa;
     }
 }
 

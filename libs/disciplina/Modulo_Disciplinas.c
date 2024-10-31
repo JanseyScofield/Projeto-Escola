@@ -46,6 +46,7 @@ void ModuloDisciplinas(Disciplina disciplinas[], int *qtdDisciplinas, Pessoa pro
                     printf("Ainda nao ha disciplinas cadastradas.\n");
                 }
                 else{
+                    limparTela();
                     printf("O que deseja atualizar?\n");
                     printf("0 - Voltar\n");
                     printf("1 - Dados da Disciplina\n");
