@@ -105,11 +105,11 @@ void atualizarDisciplina(Disciplina *disciplinas, int qtdDisciplinas, Pessoa *pr
 		}
 	}
 	
-	printf("Informe o  novo nome:\n");
+	printf("Informe o  novo nome: ");
 	fgets(disciplina->nome, TAM_NOME, stdin);
-	printf("Digite a turma:\n");
+	printf("Digite a turma: ");
 	scanf("%d", &disciplina->turma);
-	printf("Digite o semestre da disciplina:\n");
+	printf("Digite o semestre da disciplina: ");
 	scanf("%d", &disciplina->semestre);
 	limparBuffer();
 
