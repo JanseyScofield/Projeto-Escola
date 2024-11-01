@@ -106,10 +106,12 @@ void ModuloDisciplinas(Disciplina disciplinas[], int *qtdDisciplinas, Pessoa pro
                 break;
             }
             case 4: {
+                limparTela();
                 printf("O que deseja visualizar?\n");
                 printf("0 - Voltar\n");
                 printf("1 - Listar todas as disciplinas\n");
                 printf("2 - Listar uma disciplina\n");
+                printf("3 - Listar disciplinas com mais de 40 alunos matriculados\n");
 
                 scanf(" %c", &entradaAtualizar);
                 limparBuffer();
@@ -131,11 +133,18 @@ void ModuloDisciplinas(Disciplina disciplinas[], int *qtdDisciplinas, Pessoa pro
                         if(*qtdDisciplinas == 0){
                             printf("Ainda nao ha disciplinas cadastradas"); 
                         }
-                        else if(qtdAlunos == 0){
-                            printf("Ainda nao ha aluno cadastrados"); 
-                        }
                         else{
                             mostrarDisciplinaDetalhada(disciplinas, *qtdDisciplinas);
+                        }
+                        esperarEnter();
+                        limparBuffer();
+                        break;
+                    case 3:
+                        if(*qtdDisciplinas == 0){
+                            printf("Ainda nao ha disciplinas cadastradas"); 
+                        }
+                        else{
+                            mostrarDisciplinas40VagasOcupadas(disciplinas, *qtdDisciplinas);
                         }
                         esperarEnter();
                         limparBuffer();

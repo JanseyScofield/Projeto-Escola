@@ -69,9 +69,10 @@ int main(){
 
 void menuInicial() {
      printf("PROJETO ESCOLA\n");
+     printf("Qual modulo deseja entrar?\n");
      printf("0 - Sair\n");
-     printf("1 - Aluno\n");
-     printf("2 - Professor\n");
-     printf("3 - Disciplina\n");
+     printf("1 - Modulo Aluno\n");
+     printf("2 - Modulo Professor\n");
+     printf("3 - Modulo Disciplina\n");
      printf("\n");
 }
