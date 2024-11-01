@@ -90,6 +90,22 @@ void mostrarDisciplinaDetalhada(Disciplina *disciplinas, int qtdDisciplinas){
 	printf("\n--------------------------------------\n");
 }
 
+void mostrarDisciplinas40VagasOcupadas(Disciplina *disciplinas, int qtdDisciplinas){
+	int iCont;
+	int qtdDisciplinasMostradas = 0;
+
+	for(iCont = 0; iCont < qtdDisciplinas; iCont++){
+		if(disciplinas[iCont].ativa && disciplinas[iCont].qtdAlunos >= 40){
+			mostrarDadosResumidosDisciplina(disciplinas[iCont]);
+			qtdDisciplinasMostradas++;
+		}
+	}
+
+	if(qtdDisciplinasMostradas == 0){
+		printf("Ainda nao ha disciplinas com mais de 40 alunos matriculados.\n");
+	}
+}
+
 void ordenarDisciplinaPorStatus(Disciplina *disciplinas, int qtdDisciplinas){
 	int iCont,jCont;
 	Disciplina key;
