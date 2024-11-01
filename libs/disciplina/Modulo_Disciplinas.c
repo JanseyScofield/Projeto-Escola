@@ -35,7 +35,6 @@ void ModuloDisciplinas(Disciplina disciplinas[], int *qtdDisciplinas, Pessoa pro
                 }
                 else{
                     cadastrarDisciplina(disciplinas, qtdDisciplinas, professores,  qtdProfessores);
-                    limparBuffer();
                 }
                 esperarEnter();
                 break;
@@ -88,7 +87,7 @@ void ModuloDisciplinas(Disciplina disciplinas[], int *qtdDisciplinas, Pessoa pro
                                 excluirAlunoDisciplina(disciplinas, *qtdDisciplinas);
                                 limparBuffer();
                             }
-                }
+                    }
                 esperarEnter();
                 break;
                 }
