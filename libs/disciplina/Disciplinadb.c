@@ -1,52 +1,53 @@
 #include "Disciplinadb.h"
+#include "../utils.h"
 
 void cadastrarDisciplina(Disciplina *disciplinas, int *qtdDisciplinas, Pessoa *professores, int qtdProfessores){
 	Disciplina novaDisciplina;
 	char cpf[TAM_CPF];
-
-	novaDisciplina.codigo = *qtdDisciplinas + 1;
-	novaDisciplina.ativa = 1;
-	printf("Informe o nome:\n");
-	fgets(novaDisciplina.nome, TAM_NOME, stdin);
-	printf("Digite a turma:\n");
-	scanf("%d", &novaDisciplina.turma);
-	printf("Digite o semestre da disciplina:\n");
-	scanf("%d", &novaDisciplina.semestre);
-	limparBuffer();
-
-	printf("Digite o CPF do professor da matéria: ");
-	fgets(cpf, TAM_CPF, stdin);	
-	while (!validarCPF(cpf)){
-		printf("CPF invalido. Digite novamente: ");
-		fgets(cpf, TAM_CPF, stdin);	
-	}
+	char op = 'a';
+	int sair = 0;
 	
-	int posProfessor = buscarPessoaPorCPF(professores, qtdProfessores, cpf);
-	while(1){
-		if(posProfessor ==  - 1){
-			printf("Esse professor nao existe. Digite outro CPF\n");
-			fgets(cpf, TAM_CPF, stdin);
+	while(op != 'n' && !sair){
+		novaDisciplina.codigo = *qtdDisciplinas + 1;
+		novaDisciplina.ativa = 1;
+		printf("Informe o nome: ");
+		fgets(novaDisciplina.nome, TAM_NOME, stdin);
+		printf("Digite a turma: ");
+		scanf("%d", &novaDisciplina.turma);
+		printf("Digite o semestre da disciplina: ");
+		scanf("%d", &novaDisciplina.semestre);
+		limparBuffer();
+		printf("Digite o CPF do professor da matéria: ");
+		fgets(cpf, TAM_CPF, stdin);
+
+		int cpfValido = validarCPF(cpf);
+		
+		int posProfessor;
+
+		if (!cpfValido)
+			printf("\nCPF invalido.");
+		else 
 			posProfessor = buscarPessoaPorCPF(professores, qtdProfessores, cpf);
+
+		if(posProfessor ==  - 1 || !professores[posProfessor].ativa || !cpfValido) {
+			entradaInvalida();
+			printf("Deseja continuar (s/n)?");
+			while(op != 's' && op != 'n')
+				scanf(" %c", &op);
 		}
-		else{
+		else {
 			Pessoa professor = professores[posProfessor];
-			if(!professor.ativa){
-				printf("Esse professor esta inativo. Digite outro CPF\n");
-				fgets(cpf, TAM_CPF, stdin);
-				posProfessor = buscarPessoaPorCPF(professores, qtdProfessores, cpf);
-			}
-			else{
-				break;
-			}
+			professores[posProfessor].qtdMaterias++;
+			Pessoa *ponteiroProf = &professores[posProfessor];
+			novaDisciplina.professor = ponteiroProf;
+			novaDisciplina.qtdAlunos = 0;
+			disciplinas[*qtdDisciplinas] = novaDisciplina;
+			(*qtdDisciplinas)++;
+			printf("Disciplina cadastrada com sucesso!");
+			sair = 1;
 		}
 	}
-	professores[posProfessor].qtdMaterias++;
-	Pessoa *ponteiroProf = &professores[posProfessor];
-	novaDisciplina.professor = ponteiroProf;
-	novaDisciplina.qtdAlunos = 0;
-	disciplinas[*qtdDisciplinas] = novaDisciplina;
-	(*qtdDisciplinas)++;
-	printf("Disciplina cadastrada com sucesso!");
+	limparBuffer();
 }
 
 void deletarDisciplina(Disciplina *disciplinas, int qtdDisciplinas){
