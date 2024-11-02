@@ -31,11 +31,9 @@ void cadastrarPessoa(Pessoa lstPessoa[], int *qtdPessoasCadastradas, int *qtdPes
         tratarStr(pessoa.nome);
         charToUpper(&pessoa.sexo);
 
-        setbuf(stdin, NULL);
-
         int cpfCadastrado = buscarPessoaPorCPF(lstPessoa, *qtdPessoasAtivas, pessoa.cpf);
         
-        
+        limparBuffer();
         if (validarCPF(pessoa.cpf) && validarData(pessoa.data) && validarSexo(pessoa.sexo) && cpfCadastrado == -1)
         {
             validar = 1;
@@ -80,36 +78,37 @@ void cadastrarPessoa(Pessoa lstPessoa[], int *qtdPessoasCadastradas, int *qtdPes
 void atualizarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
 {
     int validar = 0;
-    char op = 'a';
     char cpf[TAM_CPF];
-    limparTela();
-    printf("Informe o CPF do cadastrado que deseja alterar: ");
-    fgets(cpf, TAM_CPF, stdin);
-    int posicao;
-    posicao = buscarPessoaPorCPF(lstPessoa, *quantidade, cpf);
-
-    setbuf(stdin, NULL);
-
-    if(posicao < 0)
-    {
-        printf("\nEsse usuario nao foi encontrado.\n");
-        esperarEnter();
-    }
-    else
-    {
+    char op = 'a';
+    while (!validar && op != 'n') {
         limparTela();
-        mostrarPessoa(lstPessoa[posicao]);
-        printf("\n Deseja mesmo atualizar esse cadastro? (s/n)\n");
-        while (op != 's' && op != 'n')
-            op = getchar();
-    }
+        printf("Informe o CPF do cadastrado que deseja alterar: ");
+        fgets(cpf, TAM_CPF, stdin);
+        int posicao;
+        posicao = buscarPessoaPorCPF(lstPessoa, *quantidade, cpf);
 
-    if (posicao >= 0 && op == 's')
-    {
-        Pessoa pessoa = lstPessoa[posicao];
-
-        while (!validar && op != 'n')
+        if(posicao < 0)
         {
+            printf("\nEsse usuario nao foi encontrado.\n");
+            printf("Alguma informacao incorreta.\n");
+            printf("Deseja tentar atualizar o cadastrado novamente? (s/n)\n");
+            while (op != 's' && op != 'n')
+                scanf(" %c", &op);
+        }
+        else
+        {
+            limparTela();
+            mostrarPessoa(lstPessoa[posicao]);
+            printf("\n Deseja mesmo atualizar esse cadastro? (s/n)\n");
+            while (op != 's' && op != 'n')
+                op = getchar();
+            limparBuffer();
+        }
+
+        if (posicao >= 0 && op == 's')
+        {
+            Pessoa pessoa = lstPessoa[posicao];
+
             limparTela();
 
             mostrarPessoa(pessoa);
@@ -126,6 +125,8 @@ void atualizarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
             charToUpper(&pessoa.sexo);
             pessoa.qtdMaterias = 0;
 
+            limparBuffer();
+
             if (validarData(pessoa.data) && validarSexo(pessoa.sexo))
             {
                 validar = 1;
@@ -136,11 +137,10 @@ void atualizarPessoa(Pessoa lstPessoa[], int *quantidade, char tipo[])
             }
             else
             {
-                limparBuffer();
                 printf("Alguma informacao incorreta.\n");
                 printf("Deseja tentar atualizar o cadastrado novamente? (s/n)\n");
                 while (op != 's' && op != 'n')
-                    op = getchar();
+                    scanf(" %c", &op);
             }
         }
     }
